@@ -1,0 +1,1094 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45A70A4C-942D-4364-8B7D-DF2F0F5977C0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SN_Net</RootNamespace>
+    <AssemblyName>SN_Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>eye-256.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DotNetDBF">
+      <HintPath>..\packages\dotnetdbf.3.1.0\lib\net35\DotNetDBF.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetDBF.Enumerable">
+      <HintPath>..\packages\dotnetdbf.enumerable.4.1.0\lib\net40\DotNetDBF.Enumerable.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GetMac">
+      <HintPath>..\..\_DLL\GetMac.dll</HintPath>
+    </Reference>
+    <Reference Include="ImpromptuInterface">
+      <HintPath>..\packages\ImpromptuInterface.6.0.6\lib\net40\ImpromptuInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net40\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebAPI">
+      <HintPath>..\..\_DLL\WebAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModels\AbsentVM.cs" />
+    <Compile Include="DataModels\CloudSrv.cs" />
+    <Compile Include="DataModels\Dealer.cs" />
+    <Compile Include="DataModels\Dealer_list.cs" />
+    <Compile Include="DataModels\D_msg.cs" />
+    <Compile Include="DataModels\EventCalendar.cs" />
+    <Compile Include="DataModels\Istab.cs" />
+    <Compile Include="DataModels\Ma.cs" />
+    <Compile Include="DataModels\MacAllowed.cs" />
+    <Compile Include="DataModels\MACloud.cs" />
+    <Compile Include="DataModels\Note.cs" />
+    <Compile Include="DataModels\NoteCalendar.cs" />
+    <Compile Include="DataModels\PrintPageSetup.cs" />
+    <Compile Include="DataModels\Problem.cs" />
+    <Compile Include="DataModels\RegisterData.cs" />
+    <Compile Include="DataModels\Serial.cs" />
+    <Compile Include="DataModels\SerialPassword.cs" />
+    <Compile Include="DataModels\Serial_list.cs" />
+    <Compile Include="DataModels\SpyLog.cs" />
+    <Compile Include="DataModels\SupportNote.cs" />
+    <Compile Include="DataModels\SupportNoteComment.cs" />
+    <Compile Include="DataModels\TrainingCalendar.cs" />
+    <Compile Include="DataModels\Users.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\Clean.cs" />
+    <Compile Include="MiscClass\ColorResource.cs" />
+    <Compile Include="MiscClass\CompareString.cs" />
+    <Compile Include="MiscClass\CustomBrowseField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomBrowseField.Designer.cs">
+      <DependentUpon>CustomBrowseField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomComboBox.Designer.cs">
+      <DependentUpon>CustomComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomDateEvent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomDateEvent.Designer.cs">
+      <DependentUpon>CustomDateEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomDateEvent2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomDateEvent2.Designer.cs">
+      <DependentUpon>CustomDateEvent2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomDateTimePicker.Designer.cs">
+      <DependentUpon>CustomDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomLabel.Designer.cs">
+      <DependentUpon>CustomLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomMaskedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomMaskedTextBox.Designer.cs">
+      <DependentUpon>CustomMaskedTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomTextBox.Designer.cs">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\CustomTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomTimePicker.Designer.cs">
+      <DependentUpon>CustomTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\DataRowIntention.cs" />
+    <Compile Include="MiscClass\DateTimeBindingControl.cs" />
+    <Compile Include="MiscClass\EnterKeyManager.cs" />
+    <Compile Include="MiscClass\EscapeKeyToCloseDialog.cs" />
+    <Compile Include="MiscClass\ComboboxItem.cs" />
+    <Compile Include="MiscClass\FormControlSequence.cs" />
+    <Compile Include="MiscClass\HelperClass.cs" />
+    <Compile Include="MiscClass\DataResource.cs" />
+    <Compile Include="MiscClass\PairTextBoxWithBrowseButton.cs" />
+    <Compile Include="MiscClass\FormState.cs" />
+    <Compile Include="MiscClass\GlobalVar.cs" />
+    <Compile Include="MiscClass\PairDatePickerWithMaskedTextBox.cs" />
+    <Compile Include="MiscClass\DataGridViewHelper.cs" />
+    <Compile Include="MiscClass\ServerResult.cs" />
+    <Compile Include="MiscClass\SetFormMode.cs" />
+    <Compile Include="MiscClass\StringResource.cs" />
+    <Compile Include="MiscClass\CustomTextBoxMaskedWithLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiscClass\CustomTextBoxMaskedWithLabel.Designer.cs">
+      <DependentUpon>CustomTextBoxMaskedWithLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiscClass\TransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MiscClass\ValidateSN.cs" />
+    <Compile Include="Models\cloud_srv.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBX.cs" />
+    <Compile Include="Models\dealer.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\d_msg.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\event_calendar.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\istab.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ma.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mac_allowed.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\note_calendar.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\problem.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\serial.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\serial_password.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SnModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SnModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SnModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SnModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SnModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spy_log.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\training_calendar.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\users.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\websession.cs">
+      <DependentUpon>SnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subform\ApiMainUrlFirstSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\ApiMainUrlFirstSetting.Designer.cs">
+      <DependentUpon>ApiMainUrlFirstSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\Calendar2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\Calendar2.Designer.cs">
+      <DependentUpon>Calendar2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\CalendarWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\CalendarWindow.Designer.cs">
+      <DependentUpon>CalendarWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\ChangeLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\ChangeLog.Designer.cs">
+      <DependentUpon>ChangeLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\ChangePasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\ChangePasswordForm.Designer.cs">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\CloudsrvFormDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\CloudsrvFormDialog.Designer.cs">
+      <DependentUpon>CloudsrvFormDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\CommentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\CommentWindow.Designer.cs">
+      <DependentUpon>CommentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\DataInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\DataInfo.Designer.cs">
+      <DependentUpon>DataInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\DateEventWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\DateEventWindow.Designer.cs">
+      <DependentUpon>DateEventWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\DateSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\DateSelectorDialog.Designer.cs">
+      <DependentUpon>DateSelectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\DealerInquiryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\DealerInquiryWindow.Designer.cs">
+      <DependentUpon>DealerInquiryWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\DealerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\DealerList.Designer.cs">
+      <DependentUpon>DealerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\DealerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\DealerWindow.Designer.cs">
+      <DependentUpon>DealerWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\GenerateSNForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\GenerateSNForm.Designer.cs">
+      <DependentUpon>GenerateSNForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\ImportListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\ImportListForm.Designer.cs">
+      <DependentUpon>ImportListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\InquiryConditionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\InquiryConditionForm.Designer.cs">
+      <DependentUpon>InquiryConditionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\InquiryMaAndCloud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\InquiryMaAndCloud.Designer.cs">
+      <DependentUpon>InquiryMaAndCloud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\IstabAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\IstabAddEditForm.Designer.cs">
+      <DependentUpon>IstabAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\IstabWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\IstabWindow.Designer.cs">
+      <DependentUpon>IstabWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\LeaveRange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\LeaveRange.Designer.cs">
+      <DependentUpon>LeaveRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\LeaveRangeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\LeaveRangeDialog.Designer.cs">
+      <DependentUpon>LeaveRangeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\LeaveWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\LeaveWindow.Designer.cs">
+      <DependentUpon>LeaveWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\LoadingDialog.Designer.cs">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\LostRenewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\LostRenewForm.Designer.cs">
+      <DependentUpon>LostRenewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\MacAddressEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\MacAddressEditForm.Designer.cs">
+      <DependentUpon>MacAddressEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\MacAddressList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\MacAddressList.Designer.cs">
+      <DependentUpon>MacAddressList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\MAFormDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\MAFormDialog.Designer.cs">
+      <DependentUpon>MAFormDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\MessageAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\MessageAlert.Designer.cs">
+      <DependentUpon>MessageAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\PreferenceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\PreferenceForm.Designer.cs">
+      <DependentUpon>PreferenceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\PrintDealerLabelOutputSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\PrintDealerLabelOutputSelection.Designer.cs">
+      <DependentUpon>PrintDealerLabelOutputSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\PrintOutputSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\PrintOutputSelection.Designer.cs">
+      <DependentUpon>PrintOutputSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SearchBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SearchBox.Designer.cs">
+      <DependentUpon>SearchBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SearchDealerBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SearchDealerBox.Designer.cs">
+      <DependentUpon>SearchDealerBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SearchHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SearchHistory.Designer.cs">
+      <DependentUpon>SearchHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SearchSerialBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SearchSerialBox.Designer.cs">
+      <DependentUpon>SearchSerialBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SellBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SellBookForm.Designer.cs">
+      <DependentUpon>SellBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SellProgram2nd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SellProgram2nd.Designer.cs">
+      <DependentUpon>SellProgram2nd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SerialPasswordList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SerialPasswordList.Designer.cs">
+      <DependentUpon>SerialPasswordList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SimpleDatagridDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SimpleDatagridDialog.Designer.cs">
+      <DependentUpon>SimpleDatagridDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SNInquiryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SNInquiryWindow.Designer.cs">
+      <DependentUpon>SNInquiryWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SerialPasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SerialPasswordDialog.Designer.cs">
+      <DependentUpon>SerialPasswordDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SnWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SnWindow.Designer.cs">
+      <DependentUpon>SnWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\IstabList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\IstabList.Designer.cs">
+      <DependentUpon>IstabList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SplashPreventMenustripActive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SplashPreventMenustripActive.Designer.cs">
+      <DependentUpon>SplashPreventMenustripActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SupportNoteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SupportNoteDialog.Designer.cs">
+      <DependentUpon>SupportNoteDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SupportNoteWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SupportNoteWindow.Designer.cs">
+      <DependentUpon>SupportNoteWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\SupportStatWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\SupportStatWindow.Designer.cs">
+      <DependentUpon>SupportStatWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\TestControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\TestControl.Designer.cs">
+      <DependentUpon>TestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\TrainerNoteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\TrainerNoteDialog.Designer.cs">
+      <DependentUpon>TrainerNoteDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\TrainingExpertWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\TrainingExpertWindow.Designer.cs">
+      <DependentUpon>TrainingExpertWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\TrainingExpertWindow2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\TrainingExpertWindow2.Designer.cs">
+      <DependentUpon>TrainingExpertWindow2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\UpgradeProgramForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\UpgradeProgramForm.Designer.cs">
+      <DependentUpon>UpgradeProgramForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\UpNewRwtLineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\UpNewRwtLineForm.Designer.cs">
+      <DependentUpon>UpNewRwtLineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\UsersEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\UsersEditForm.Designer.cs">
+      <DependentUpon>UsersEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\UsersGroupWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\UsersGroupWindow.Designer.cs">
+      <DependentUpon>UsersGroupWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\UsersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\UsersList.Designer.cs">
+      <DependentUpon>UsersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\YearlyHolidayAddEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\YearlyHolidayAddEditDialog.Designer.cs">
+      <DependentUpon>YearlyHolidayAddEditDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\YearlyHolidayDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\YearlyHolidayDialog.Designer.cs">
+      <DependentUpon>YearlyHolidayDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subform\YearSelectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\YearSelectDialog.Designer.cs">
+      <DependentUpon>YearSelectDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\NoteCalendarVM.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomBrowseField.resx">
+      <DependentUpon>CustomBrowseField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomComboBox.resx">
+      <DependentUpon>CustomComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomDateEvent.resx">
+      <DependentUpon>CustomDateEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomDateEvent2.resx">
+      <DependentUpon>CustomDateEvent2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomDateTimePicker.resx">
+      <DependentUpon>CustomDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomLabel.resx">
+      <DependentUpon>CustomLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomMaskedTextBox.resx">
+      <DependentUpon>CustomMaskedTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomTextBox.resx">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomTextBoxMaskedWithLabel.resx">
+      <DependentUpon>CustomTextBoxMaskedWithLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscClass\CustomTimePicker.resx">
+      <DependentUpon>CustomTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Subform\ApiMainUrlFirstSetting.resx">
+      <DependentUpon>ApiMainUrlFirstSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\Calendar2.resx">
+      <DependentUpon>Calendar2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\CalendarWindow.resx">
+      <DependentUpon>CalendarWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\ChangeLog.resx">
+      <DependentUpon>ChangeLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\CloudsrvFormDialog.resx">
+      <DependentUpon>CloudsrvFormDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\CommentWindow.resx">
+      <DependentUpon>CommentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\DataInfo.resx">
+      <DependentUpon>DataInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\DateEventWindow.resx">
+      <DependentUpon>DateEventWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\DateSelectorDialog.resx">
+      <DependentUpon>DateSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\DealerInquiryWindow.resx">
+      <DependentUpon>DealerInquiryWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\DealerList.resx">
+      <DependentUpon>DealerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\DealerWindow.resx">
+      <DependentUpon>DealerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\GenerateSNForm.resx">
+      <DependentUpon>GenerateSNForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\ImportListForm.resx">
+      <DependentUpon>ImportListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\InquiryConditionForm.resx">
+      <DependentUpon>InquiryConditionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\InquiryMaAndCloud.resx">
+      <DependentUpon>InquiryMaAndCloud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\IstabAddEditForm.resx">
+      <DependentUpon>IstabAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\IstabWindow.resx">
+      <DependentUpon>IstabWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\LeaveRange.resx">
+      <DependentUpon>LeaveRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\LeaveRangeDialog.resx">
+      <DependentUpon>LeaveRangeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\LeaveWindow.resx">
+      <DependentUpon>LeaveWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\LoadingDialog.resx">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\LostRenewForm.resx">
+      <DependentUpon>LostRenewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\MacAddressEditForm.resx">
+      <DependentUpon>MacAddressEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\MacAddressList.resx">
+      <DependentUpon>MacAddressList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\MAFormDialog.resx">
+      <DependentUpon>MAFormDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\MessageAlert.resx">
+      <DependentUpon>MessageAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\PreferenceForm.resx">
+      <DependentUpon>PreferenceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\PrintDealerLabelOutputSelection.resx">
+      <DependentUpon>PrintDealerLabelOutputSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\PrintOutputSelection.resx">
+      <DependentUpon>PrintOutputSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SearchBox.resx">
+      <DependentUpon>SearchBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SearchDealerBox.resx">
+      <DependentUpon>SearchDealerBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SearchHistory.resx">
+      <DependentUpon>SearchHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SearchSerialBox.resx">
+      <DependentUpon>SearchSerialBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SellBookForm.resx">
+      <DependentUpon>SellBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SellProgram2nd.resx">
+      <DependentUpon>SellProgram2nd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SerialPasswordList.resx">
+      <DependentUpon>SerialPasswordList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SimpleDatagridDialog.resx">
+      <DependentUpon>SimpleDatagridDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SNInquiryWindow.resx">
+      <DependentUpon>SNInquiryWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SerialPasswordDialog.resx">
+      <DependentUpon>SerialPasswordDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SnWindow.resx">
+      <DependentUpon>SnWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\IstabList.resx">
+      <DependentUpon>IstabList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SplashPreventMenustripActive.resx">
+      <DependentUpon>SplashPreventMenustripActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SupportNoteDialog.resx">
+      <DependentUpon>SupportNoteDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SupportNoteWindow.resx">
+      <DependentUpon>SupportNoteWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\SupportStatWindow.resx">
+      <DependentUpon>SupportStatWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\TestControl.resx">
+      <DependentUpon>TestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\TrainerNoteDialog.resx">
+      <DependentUpon>TrainerNoteDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\TrainingExpertWindow.resx">
+      <DependentUpon>TrainingExpertWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\TrainingExpertWindow2.resx">
+      <DependentUpon>TrainingExpertWindow2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\UpgradeProgramForm.resx">
+      <DependentUpon>UpgradeProgramForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\UpNewRwtLineForm.resx">
+      <DependentUpon>UpNewRwtLineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\UsersEditForm.resx">
+      <DependentUpon>UsersEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\UsersGroupWindow.resx">
+      <DependentUpon>UsersGroupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\UsersList.resx">
+      <DependentUpon>UsersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\YearlyHolidayAddEditDialog.resx">
+      <DependentUpon>YearlyHolidayAddEditDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\YearlyHolidayDialog.resx">
+      <DependentUpon>YearlyHolidayDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subform\YearSelectDialog.resx">
+      <DependentUpon>YearSelectDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Models\SnModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SnModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\SnModels.edmx.diagram">
+      <DependentUpon>SnModels.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\first.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\last.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\set2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upgrade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upgrade1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\processing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\processing-green.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\processing-bar-green.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading-bar.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eye-256.ico" />
+    <Content Include="Models\SnModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SnModels.edmx</DependentUpon>
+      <LastGenOutput>SnModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SnModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SnModels.edmx</DependentUpon>
+      <LastGenOutput>SnModels.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\Holiday.png" />
+    <None Include="Resources\menu.png" />
+    <None Include="Resources\plus1.png" />
+    <None Include="Resources\save2.png" />
+    <None Include="Resources\save1.png" />
+    <None Include="Resources\trash2.png" />
+    <None Include="Resources\stop1.png" />
+    <None Include="Resources\trash1.png" />
+    <None Include="Resources\edit1.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\arrow_all_up.png" />
+    <None Include="Resources\arrow_all_down.png" />
+    <None Include="Resources\arrow_go_down.png" />
+    <None Include="Resources\arrow_upper.png" />
+    <None Include="Resources\check_16.png" />
+    <None Include="Resources\teacher.png" />
+    <None Include="Resources\maid.png" />
+    <None Include="Resources\smile.png" />
+    <None Include="Resources\users_group.png" />
+    <None Include="Resources\change_scope.png" />
+    <None Include="Resources\calendar_range.png" />
+    <None Include="Resources\reset_321.png" />
+    <None Include="Resources\check_32.png" />
+    <None Include="Resources\reset_32.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\stop_media.png" />
+    <None Include="Resources\pause_media.png" />
+    <None Include="Resources\play_media.png" />
+    <None Include="Resources\arrow_left_16.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\support.png" />
+    <None Include="Resources\pause_32.png" />
+    <None Include="Resources\detail.png" />
+    <None Include="Resources\printer_small.png" />
+    <None Include="Resources\pause.png" />
+    <None Include="Resources\note_go.png" />
+    <None Include="Resources\printer1.png" />
+    <None Include="Resources\printer.png" />
+    <None Include="Resources\print1.png" />
+    <None Include="Resources\arrow_up.png" />
+    <None Include="Resources\arrow_right_16.png" />
+    <None Include="Resources\import_data.png" />
+    <None Include="Resources\gen_sn1.png" />
+    <None Include="Resources\gen_sn.png" />
+    <None Include="Resources\preferences.png" />
+    <None Include="Resources\process-bar2.gif" />
+    <None Include="Resources\process-bar1.gif" />
+    <None Include="Resources\process_bar.bmp" />
+    <None Include="Resources\process-bar.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

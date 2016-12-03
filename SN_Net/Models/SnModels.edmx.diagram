@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3ed95c2244d486cbefa590e0d13552e" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="snModel.cloud_srv" Width="1.5" PointX="5.125" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.d_msg" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.dealer" Width="1.5" PointX="3.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.event_calendar" Width="1.5" PointX="3.125" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.istab" Width="1.5" PointX="1.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.ma" Width="1.5" PointX="9.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.mac_allowed" Width="1.5" PointX="1" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.note_calendar" Width="1.5" PointX="3.125" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.problem" Width="1.5" PointX="9.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.serial" Width="2" PointX="7" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.serial_password" Width="1.5" PointX="9.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.spy_log" Width="1.5" PointX="7.125" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.training_calendar" Width="1.5" PointX="4.875" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.users" Width="2.125" PointX="0.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="snModel.websession" Width="1.5" PointX="8.875" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="snModel.fk_cloud_srv_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_cloud_srv_serial_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_d_msg_dealer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_d_msg_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_dealer_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_serial_dealer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_event_calendar_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_event_calendar_users_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_istab_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_ma_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_ma_serial_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_note_calendar_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_problem_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_problem_serial_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_serial_password_serial_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_serial_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_serial_password_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_spy_log_users_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_training_calendar_recby" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_training_calendar_users_id" ManuallyRouted="false" />
+        <AssociationConnector Association="snModel.fk_websession_users_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
