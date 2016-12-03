@@ -50,6 +50,20 @@ namespace SN_Net
             InitializeComponent();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.my_mac = GetMac.GetMac.GetMACAddress().First<ModelMacData>().macAddress;
+
+            this.lblTimeDuration.Visible = false;
+            this.RePositionLabelDuration();
+
+            this.lblTimeDuration.Click += delegate
+            {
+                this.supportnote_wind.Activate();
+            };
+
+        }
+
         private void MainForm_Shown(object sender, EventArgs e)
         {
             this.toolStripInfo.Text = " [ ที่เก็บโปรแกรม : " + AppDomain.CurrentDomain.BaseDirectory + " ]";
@@ -80,19 +94,6 @@ namespace SN_Net
                 this.loadDataResource();
                 this.sNToolStripMenuItem.PerformClick();
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            this.my_mac = GetMac.GetMac.GetMACAddress().First<ModelMacData>().macAddress;
-
-            this.lblTimeDuration.Visible = false;
-            this.RePositionLabelDuration();
-
-            this.lblTimeDuration.Click += delegate
-            {
-                this.supportnote_wind.Activate();
-            };
         }
 
         private void MainForm_Resize(object sender, EventArgs e)

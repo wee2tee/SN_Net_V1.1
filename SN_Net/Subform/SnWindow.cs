@@ -129,9 +129,14 @@ namespace SN_Net.Subform
             //this.sortMode = SORT_SN;
 
             /************************************/
-            this.current_serial = this.main_form.db.serial.Include("problem_Serial_id").LastOrDefault();
-            if (current_serial != null)
-                this.FillForm();
+            //this.current_serial = this.main_form.db.serial.ToList().LastOrDefault();
+            foreach (var item in this.main_form.db.serial.ToList())
+            {
+                Console.WriteLine(" .. >> " + item.sernum);
+            }
+            
+            //if (current_serial != null)
+            //    this.FillForm();
 
             this.ResetControlState();
         }

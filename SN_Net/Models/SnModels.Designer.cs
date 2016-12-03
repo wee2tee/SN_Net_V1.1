@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\DotNetProjects\SN_Net_V11\SN_Net\Models\SnModels.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\DotNetProjects\SN_Net_V1.1\SN_Net\Models\SnModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

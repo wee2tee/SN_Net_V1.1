@@ -164,7 +164,7 @@
           <Property Name="verext" Type="varchar" MaxLength="1" />
           <Property Name="verextdat" Type="date" />
           <Property Name="chgdat" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dealer_id" Type="int" Nullable="false" />
+          <Property Name="dealer_id" Type="int" />
           <Property Name="recby" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="serial_password">
@@ -410,7 +410,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk-serial-dealer_id">
-          <End Role="dealer" Type="Self.dealer" Multiplicity="1" />
+          <End Role="dealer" Type="Self.dealer" Multiplicity="0..1" />
           <End Role="serial" Type="Self.serial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="dealer">
