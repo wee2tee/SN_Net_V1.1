@@ -51,7 +51,7 @@ namespace SN_Net.Models
         public string verext { get; set; }
         public Nullable<System.DateTime> verextdat { get; set; }
         public System.DateTime chgdat { get; set; }
-        public int dealer_id { get; set; }
+        public int? dealer_id { get; set; }
         public int recby { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

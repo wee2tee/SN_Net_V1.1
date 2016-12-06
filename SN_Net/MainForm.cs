@@ -40,7 +40,7 @@ namespace SN_Net
         public DataResource data_resource;
 
         /***********************************/
-        public snEntities db = DBX.GetDB(DBX.cloud_server, DBX.cloud_db_uid, DBX.cloud_db_pwd, DBX.cloud_db_name);
+        //public snEntities db = DBX.GetDB(DBX.cloud_server, DBX.cloud_db_uid, DBX.cloud_db_pwd, DBX.cloud_db_name);
         public users loged_in_user;
         public string my_mac = string.Empty;
         /***********************************/

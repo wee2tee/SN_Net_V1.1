@@ -30,7 +30,7 @@ namespace SN_Net.Subform
         
         /********************/
         private MainForm main_form;
-        private snEntities db;
+        //private snEntities db;
         public users loged_in_user;
         /********************/
 
@@ -45,7 +45,7 @@ namespace SN_Net.Subform
             InitializeComponent();
             EscapeKeyToCloseDialog.ActiveEscToClose(this);
             this.main_form = main_form;
-            this.db = this.main_form.db;
+            //this.db = this.main_form.db;
 
             //system_path = System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             //appdata_path = Path.Combine(system_path, "SN_Net\\");
@@ -119,19 +119,12 @@ namespace SN_Net.Subform
 
         private void submitLogin()
         {
-            users user = this.db.users.Where(u => u.username.Trim() == this.txtUser.Text.Trim() && u.userpassword.Trim() == this.txtPassword.Text.Trim()).FirstOrDefault();
-            if(user != null)
+            using (snEntities db = DBX.DataSet())
             {
-                if(user.level == (int)USER_LEVEL.ADMIN)
+                users user = db.users.Where(u => u.username.Trim() == this.txtUser.Text.Trim() && u.userpassword.Trim() == this.txtPassword.Text.Trim()).FirstOrDefault();
+                if (user != null)
                 {
-                    this.loged_in_user = user;
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    mac_allowed mac = this.db.mac_allowed.Where(m => m.mac_address.Trim() == this.main_form.my_mac.Trim()).FirstOrDefault();
-                    if (mac != null)
+                    if (user.level == (int)USER_LEVEL.ADMIN)
                     {
                         this.loged_in_user = user;
                         this.DialogResult = DialogResult.OK;
@@ -139,14 +132,24 @@ namespace SN_Net.Subform
                     }
                     else
                     {
-                        MessageAlert.Show("เครื่องของท่านไม่ได้รับอนุญาตให้เข้าระบบ", "Error", MessageAlertButtons.OK, MessageAlertIcons.STOP);
-                        return;
+                        mac_allowed mac = db.mac_allowed.Where(m => m.mac_address.Trim() == this.main_form.my_mac.Trim()).FirstOrDefault();
+                        if (mac != null)
+                        {
+                            this.loged_in_user = user;
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageAlert.Show("เครื่องของท่านไม่ได้รับอนุญาตให้เข้าระบบ", "Error", MessageAlertButtons.OK, MessageAlertIcons.STOP);
+                            return;
+                        }
                     }
                 }
-            }
-            else
-            {
-                MessageAlert.Show("รหัสผู้ใช้/รหัสผ่าน ไม่ถูกต้อง", "Error", MessageAlertButtons.OK, MessageAlertIcons.STOP);
+                else
+                {
+                    MessageAlert.Show("รหัสผู้ใช้/รหัสผ่าน ไม่ถูกต้อง", "Error", MessageAlertButtons.OK, MessageAlertIcons.STOP);
+                }
             }
         }
 

@@ -97,6 +97,20 @@ namespace SN_Net.Subform
 
         #endregion declare general variable
 
+        /***********************/
+        private enum SORT_MODE
+        {
+            SERNUM,
+            CONTACT,
+            COMPNAM,
+            DEALERCODE,
+            OLDNUM,
+            BUSITYP,
+            AREA
+        }
+        private SORT_MODE sort_mode = SORT_MODE.SERNUM;
+        /***********************/
+
         public SnWindow(MainForm main_form)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("th-TH");
@@ -124,26 +138,45 @@ namespace SN_Net.Subform
                 this.toolStripImport.Visible = false;
                 this.toolStripGenSN.Visible = false;
             }
-            //this.main_form = this.MdiParent as MainForm;
-
-            //this.sortMode = SORT_SN;
 
             /************************************/
-            //this.current_serial = this.main_form.db.serial.ToList().LastOrDefault();
-            foreach (var item in this.main_form.db.serial.ToList())
-            {
-                Console.WriteLine(" .. >> " + item.sernum);
-            }
-            
-            //if (current_serial != null)
-            //    this.FillForm();
+            this.current_serial = this.GetOrderedSerial().LastOrDefault();
+
+            if (current_serial != null)
+                this.FillForm();
 
             this.ResetControlState();
+            /************************************/
         }
 
         public void FillForm()
         {
+            if (this.current_serial == null)
+                return;
+
             this.txtSernum.Texts = this.current_serial.sernum;
+            this.txtVersion.Texts = this.current_serial.version;
+            this.txtArea.Texts = this.current_serial.area;
+            this.txtRefnum.Texts = this.current_serial.refnum;
+            this.txtPrenam.Texts = this.current_serial.prenam;
+            this.txtCompnam.Texts = this.current_serial.compnam;
+
+            this.txtAddr01.Texts = this.current_serial.addr01;
+            this.txtAddr02.Texts = this.current_serial.addr02;
+            this.txtAddr03.Texts = this.current_serial.addr03;
+            this.txtZipcod.Texts = this.current_serial.zipcod;
+            this.txtTelnum.Texts = this.current_serial.telnum;
+            this.txtFaxnum.Texts = this.current_serial.faxnum;
+            this.txtContact.Texts = this.current_serial.contact;
+            this.txtPosition.Texts = this.current_serial.position;
+            this.txtOldnum.Texts = this.current_serial.oldnum;
+
+            this.txtRemark.Texts = this.current_serial.remark;
+            this.txtBusides.Texts = this.current_serial.busides;
+            this.txtBusityp.Texts = this.current_serial.busityp;
+            this.txtDealer.Texts = this.current_serial.dealer_id_Dealer != null ? this.current_serial.dealer_id_Dealer.dealercode : "";
+            this.txtHowknown.Texts = this.current_serial.howknown;
+
         }
 
         private void ResetControlState()
@@ -310,22 +343,34 @@ namespace SN_Net.Subform
 
         private void toolStripFirst_Click(object sender, EventArgs e)
         {
-
+            this.current_serial = this.GetOrderedSerial().FirstOrDefault();
+            this.FillForm();
         }
 
         private void toolStripPrevious_Click(object sender, EventArgs e)
         {
+            List<serial> serial = this.GetOrderedSerial();
+            if (serial.FirstOrDefault() == null || this.current_serial.id == serial.First().id)
+                return;
 
+            this.current_serial = serial[serial.IndexOf(serial.Where(s => s.id == this.current_serial.id).FirstOrDefault()) - 1];
+            this.FillForm();
         }
 
         private void toolStripNext_Click(object sender, EventArgs e)
         {
+            List<serial> serial = this.GetOrderedSerial();
+            if (serial.LastOrDefault() == null || this.current_serial.id == serial.Last().id)
+                return;
 
+            this.current_serial = serial[serial.IndexOf(serial.Where(s => s.id == this.current_serial.id).FirstOrDefault()) + 1];
+            this.FillForm();
         }
 
         private void toolStripLast_Click(object sender, EventArgs e)
         {
-
+            this.current_serial = this.GetOrderedSerial().LastOrDefault();
+            this.FillForm();
         }
 
         private void toolStripItem_Click(object sender, EventArgs e)
@@ -420,7 +465,38 @@ namespace SN_Net.Subform
 
         private void toolStripReload_Click(object sender, EventArgs e)
         {
+            serial serial = DBX.DataSet().serial.Include("dealer_id_Dealer").ToList().Where(s => s.id == this.current_serial.id).FirstOrDefault();
+            if (serial == null)
+                return;
 
+            this.current_serial = serial;
+            this.FillForm();
+        }
+
+        private List<serial> GetOrderedSerial()
+        {
+            using (snEntities db = DBX.DataSet())
+            {
+                switch (this.sort_mode)
+                {
+                    case SORT_MODE.SERNUM:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.sernum).ToList();
+                    case SORT_MODE.CONTACT:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.contact).ToList();
+                    case SORT_MODE.COMPNAM:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.compnam).ToList();
+                    case SORT_MODE.DEALERCODE:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.dealer_id_Dealer.dealercode).ToList();
+                    case SORT_MODE.OLDNUM:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.oldnum).ToList();
+                    case SORT_MODE.BUSITYP:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.busityp).ToList();
+                    case SORT_MODE.AREA:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.area).ToList();
+                    default:
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.sernum).ToList();
+                }
+            }
         }
 
         private string GetMachineCode(string probDesc) // Get Machine Code (string) in probdesc

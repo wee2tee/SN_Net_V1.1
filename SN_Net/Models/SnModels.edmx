@@ -35,7 +35,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dealer" Type="varchar" MaxLength="20" />
+          <Property Name="dealercode" Type="varchar" MaxLength="20" />
           <Property Name="prenam" Type="varchar" MaxLength="30" />
           <Property Name="compnam" Type="varchar" MaxLength="100" />
           <Property Name="addr01" Type="varchar" MaxLength="50" />
@@ -620,7 +620,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dealer1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dealercode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="prenam" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="compnam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="addr01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1241,8 +1241,8 @@
           <EntitySetMapping Name="dealer">
             <EntityTypeMapping TypeName="snModel.dealer">
               <MappingFragment StoreEntitySet="dealer">
+                <ScalarProperty Name="dealercode" ColumnName="dealercode" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="dealer1" ColumnName="dealer" />
                 <ScalarProperty Name="prenam" ColumnName="prenam" />
                 <ScalarProperty Name="compnam" ColumnName="compnam" />
                 <ScalarProperty Name="addr01" ColumnName="addr01" />

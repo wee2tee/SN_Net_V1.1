@@ -22,7 +22,7 @@ namespace SN_Net.Models
         }
     
         public int id { get; set; }
-        public string dealer1 { get; set; }
+        public string dealercode { get; set; }
         public string prenam { get; set; }
         public string compnam { get; set; }
         public string addr01 { get; set; }

@@ -35,5 +35,29 @@ namespace SN_Net.Models
             string contextConnectionString = ecsBuilder.ToString();
             return new snEntities(contextConnectionString);
         }
+
+        public static snEntities DataSet()
+        {
+            string cloud_server = "localhost";
+            string cloud_db_name = "sn";
+            string cloud_db_uid = "root";
+            string cloud_db_pwd = "12345";
+
+            string originalConnectionString = ConfigurationManager.ConnectionStrings["snEntities"].ConnectionString;
+            EntityConnectionStringBuilder ecsBuilder = new EntityConnectionStringBuilder(originalConnectionString);
+            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder(ecsBuilder.ProviderConnectionString)
+            {
+                DataSource = cloud_server,
+                UserID = cloud_db_uid,
+                Password = cloud_db_pwd,
+                InitialCatalog = cloud_db_name
+            };
+
+            string providerConnectionString = scsBuilder.ToString();
+            ecsBuilder.ProviderConnectionString = providerConnectionString;
+
+            string contextConnectionString = ecsBuilder.ToString();
+            return new snEntities(contextConnectionString);
+        }
     }
 }
