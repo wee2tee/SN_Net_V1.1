@@ -140,10 +140,8 @@ namespace SN_Net.Subform
             }
 
             /************************************/
-            this.current_serial = this.GetOrderedSerial().LastOrDefault();
-
-            if (current_serial != null)
-                this.FillForm();
+            //this.current_serial = this.GetOrderedSerial().LastOrDefault();
+            this.toolStripLast.PerformClick();
 
             this.ResetControlState();
             /************************************/
@@ -343,33 +341,80 @@ namespace SN_Net.Subform
 
         private void toolStripFirst_Click(object sender, EventArgs e)
         {
-            this.current_serial = this.GetOrderedSerial().FirstOrDefault();
+            var id_list = this.GetSerialIdList();
+
+            int target_id = id_list.First().id;
+
+            using (snEntities db = DBX.DataSet())
+            {
+                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+            }
+
+            id_list = null;
             this.FillForm();
         }
 
         private void toolStripPrevious_Click(object sender, EventArgs e)
         {
-            List<serial> serial = this.GetOrderedSerial();
-            if (serial.FirstOrDefault() == null || this.current_serial.id == serial.First().id)
+            var id_list = this.GetSerialIdList();
+            if (id_list == null || id_list.Count == 0 || id_list.First().id == this.current_serial.id)
                 return;
 
-            this.current_serial = serial[serial.IndexOf(serial.Where(s => s.id == this.current_serial.id).FirstOrDefault()) - 1];
+            int target_id;
+            if(id_list.Where(i => i.id == this.current_serial.id).FirstOrDefault() != null)
+            {
+                target_id = id_list[id_list.IndexOf(id_list.Where(i => i.id == this.current_serial.id).First()) - 1].id;
+            }
+            else
+            {
+                target_id = id_list.First().id;
+            }
+            
+            
+            using(snEntities db = DBX.DataSet())
+            {
+                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+            }
+            id_list = null;
             this.FillForm();
         }
 
         private void toolStripNext_Click(object sender, EventArgs e)
         {
-            List<serial> serial = this.GetOrderedSerial();
-            if (serial.LastOrDefault() == null || this.current_serial.id == serial.Last().id)
+            var id_list = this.GetSerialIdList();
+            if (id_list == null || id_list.Count == 0 || id_list.Last().id == this.current_serial.id)
                 return;
 
-            this.current_serial = serial[serial.IndexOf(serial.Where(s => s.id == this.current_serial.id).FirstOrDefault()) + 1];
+            int target_id;
+            if (id_list.Where(i => i.id == this.current_serial.id).FirstOrDefault() != null)
+            {
+                target_id = id_list[id_list.IndexOf(id_list.Where(i => i.id == this.current_serial.id).First()) + 1].id;
+            }
+            else
+            {
+                target_id = id_list.Last().id;
+            }
+
+
+            using (snEntities db = DBX.DataSet())
+            {
+                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+            }
+            id_list = null;
             this.FillForm();
         }
 
         private void toolStripLast_Click(object sender, EventArgs e)
         {
-            this.current_serial = this.GetOrderedSerial().LastOrDefault();
+            var id_list = this.GetSerialIdList();
+            int target_id = id_list.Last().id;
+
+            using (snEntities db = DBX.DataSet())
+            {
+                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+            }
+
+            id_list = null;
             this.FillForm();
         }
 
@@ -465,36 +510,42 @@ namespace SN_Net.Subform
 
         private void toolStripReload_Click(object sender, EventArgs e)
         {
-            serial serial = DBX.DataSet().serial.Include("dealer_id_Dealer").ToList().Where(s => s.id == this.current_serial.id).FirstOrDefault();
-            if (serial == null)
-                return;
+            using (snEntities db = DBX.DataSet())
+            {
+                serial serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == this.current_serial.id).FirstOrDefault();
+                if (serial == null)
+                {
+                    MessageAlert.Show("ค้นหาข้อมูลลูกค้ารายนี้ไม่พบ", "", MessageAlertButtons.OK, MessageAlertIcons.STOP);
+                    return;
+                }
 
-            this.current_serial = serial;
-            this.FillForm();
+                this.current_serial = serial;
+                this.FillForm();
+            }
         }
 
-        private List<serial> GetOrderedSerial()
+        private List<SerialIdList> GetSerialIdList()
         {
             using (snEntities db = DBX.DataSet())
             {
                 switch (this.sort_mode)
                 {
                     case SORT_MODE.SERNUM:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.sernum).ToList();
+                        return db.serial.OrderBy(s => s.sernum).Select(s => new SerialIdList { id = s.id, key_value = s.sernum }).ToList();
                     case SORT_MODE.CONTACT:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.contact).ToList();
+                        return db.serial.OrderBy(s => s.contact).Select(s => new SerialIdList { id = s.id, key_value = s.contact }).ToList();
                     case SORT_MODE.COMPNAM:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.compnam).ToList();
+                        return db.serial.OrderBy(s => s.compnam).Select(s => new SerialIdList { id = s.id, key_value = s.compnam }).ToList();
                     case SORT_MODE.DEALERCODE:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.dealer_id_Dealer.dealercode).ToList();
+                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.dealer_id_Dealer.dealercode).Select(s => new SerialIdList { id = s.id, key_value = s.dealer_id_Dealer.dealercode }).ToList();
                     case SORT_MODE.OLDNUM:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.oldnum).ToList();
+                        return db.serial.OrderBy(s => s.oldnum).Select(s => new SerialIdList { id = s.id, key_value = s.oldnum }).ToList();
                     case SORT_MODE.BUSITYP:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.busityp).ToList();
+                        return db.serial.OrderBy(s => s.busityp).Select(s => new SerialIdList { id = s.id, key_value = s.busityp }).ToList();
                     case SORT_MODE.AREA:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.area).ToList();
+                        return db.serial.OrderBy(s => s.area).Select(s => new SerialIdList { id = s.id, key_value = s.area }).ToList();
                     default:
-                        return db.serial.Include("dealer_id_Dealer").OrderBy(s => s.sernum).ToList();
+                        return db.serial.OrderBy(s => s.sernum).Select(s => new SerialIdList { id = s.id, key_value = s.sernum }).ToList();
                 }
             }
         }
@@ -1466,6 +1517,12 @@ namespace SN_Net.Subform
                 this.main_form.supportnote_wind.Close();
             }
         }
+    }
+
+    public class SerialIdList
+    {
+        public int id { get; set; }
+        public string key_value { get; set; }
     }
 
     //public class CompareStrings : IComparer<string>
