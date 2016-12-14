@@ -285,6 +285,7 @@
     <Compile Include="Models\users.cs">
       <DependentUpon>SnModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels.cs" />
     <Compile Include="Models\websession.cs">
       <DependentUpon>SnModels.tt</DependentUpon>
     </Compile>
@@ -1079,7 +1080,12 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CC\CC.csproj">
+      <Project>{e5fa93da-db64-46a5-b36d-a1e574dd2c42}</Project>
+      <Name>CC</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

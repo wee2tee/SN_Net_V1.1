@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using WebAPI;
 using WebAPI.ApiResult;
 using Newtonsoft.Json;
 using SN_Net.Models;
+using CC;
 
 namespace SN_Net.Subform
 {
@@ -82,8 +84,6 @@ namespace SN_Net.Subform
         public Control current_focused_control;
         private bool is_problem_im_only = false;
 
-        public serial current_serial;
-
         private enum FIND_TYPE
         {
             SERNUM,
@@ -109,6 +109,15 @@ namespace SN_Net.Subform
             AREA
         }
         private SORT_MODE sort_mode = SORT_MODE.SERNUM;
+        public serial current_serial;
+        public List<istab> istab_probcod;
+        public BindingSource bs_problem;
+
+        private CustomDateTimePicker inline_prob_date = new CustomDateTimePicker() { Name = "inline-prob-date", Read_Only = false };
+        private CustomTextBox inline_prob_name = new CustomTextBox() { Name = "inline-prob-name", Read_Only = false };
+        private CustomBrowseField inline_prob_code = new CustomBrowseField() { Name = "inline-prob-code", _ReadOnly = false };
+        private CustomTextBox inline_prob_desc1 = new CustomTextBox() { Name = "inline-prob-desc1", Read_Only = false };
+        private CustomTextBoxMaskedWithLabel inline_prob_desc2 = new CustomTextBoxMaskedWithLabel() { Name = "inline-prob-desc2", Read_Only = false };
         /***********************/
 
         public SnWindow(MainForm main_form)
@@ -140,11 +149,22 @@ namespace SN_Net.Subform
             }
 
             /************************************/
-            //this.current_serial = this.GetOrderedSerial().LastOrDefault();
+            this.bs_problem = new BindingSource();
+            this.dgvProblem.DataSource = this.bs_problem;
             this.toolStripLast.PerformClick();
 
             this.ResetControlState();
             /************************************/
+        }
+
+        public void GetSerialDataByID(int target_id)
+        {
+            using (snEntities db = DBX.DataSet())
+            {
+                this.current_serial = db.serial.Include("Problem_serial_id").Include("dealer_id_Dealer").Include("howknown_Istab").Include("area_Istab").Include("busityp_Istab").Include("verext_Istab").Where(s => s.id == target_id).FirstOrDefault();
+
+                this.istab_probcod = db.istab.Where(i => i.tabtyp == istabVM.TABTYP_PROBCOD).ToList();
+            }
         }
 
         public void FillForm()
@@ -152,9 +172,12 @@ namespace SN_Net.Subform
             if (this.current_serial == null)
                 return;
 
+            this.bs_problem.ResetBindings(true);
+            this.bs_problem.DataSource = this.current_serial.Problem_serial_id.ToViewModel(this.istab_probcod);
+
             this.txtSernum.Texts = this.current_serial.sernum;
             this.txtVersion.Texts = this.current_serial.version;
-            this.txtArea.Texts = this.current_serial.area;
+            this.txtArea.Texts = this.current_serial.area_Istab != null ? this.current_serial.area_Istab.typcod : "";
             this.txtRefnum.Texts = this.current_serial.refnum;
             this.txtPrenam.Texts = this.current_serial.prenam;
             this.txtCompnam.Texts = this.current_serial.compnam;
@@ -171,10 +194,9 @@ namespace SN_Net.Subform
 
             this.txtRemark.Texts = this.current_serial.remark;
             this.txtBusides.Texts = this.current_serial.busides;
-            this.txtBusityp.Texts = this.current_serial.busityp;
+            this.txtBusityp.Texts = this.current_serial.busityp_Istab != null ? this.current_serial.busityp_Istab.typcod : "";
             this.txtDealer.Texts = this.current_serial.dealer_id_Dealer != null ? this.current_serial.dealer_id_Dealer.dealercode : "";
-            this.txtHowknown.Texts = this.current_serial.howknown;
-
+            this.txtHowknown.Texts = this.current_serial.howknown_Istab != null ? this.current_serial.howknown_Istab.typcod : "";
         }
 
         private void ResetControlState()
@@ -228,6 +250,7 @@ namespace SN_Net.Subform
             this.ValidateControlState(this.txtAddr01, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
             this.ValidateControlState(this.txtAddr02, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
             this.ValidateControlState(this.txtAddr03, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
+            this.ValidateControlState(this.txtZipcod, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
             this.ValidateControlState(this.txtTelnum, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
             this.ValidateControlState(this.txtFaxnum, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
             this.ValidateControlState(this.txtContact, new FORM_MODE[] { FORM_MODE.ADD, FORM_MODE.EDIT });
@@ -321,7 +344,9 @@ namespace SN_Net.Subform
 
         private void toolStripEdit_Click(object sender, EventArgs e)
         {
-
+            this.form_mode = FORM_MODE.EDIT;
+            this.ResetControlState();
+            this.txtVersion.Focus();
         }
 
         private void toolStripDelete_Click(object sender, EventArgs e)
@@ -336,7 +361,7 @@ namespace SN_Net.Subform
 
         private void toolStripSave_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void toolStripFirst_Click(object sender, EventArgs e)
@@ -347,7 +372,7 @@ namespace SN_Net.Subform
 
             using (snEntities db = DBX.DataSet())
             {
-                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+                this.GetSerialDataByID(target_id);
             }
 
             id_list = null;
@@ -373,7 +398,7 @@ namespace SN_Net.Subform
             
             using(snEntities db = DBX.DataSet())
             {
-                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+                this.GetSerialDataByID(target_id);
             }
             id_list = null;
             this.FillForm();
@@ -395,10 +420,9 @@ namespace SN_Net.Subform
                 target_id = id_list.Last().id;
             }
 
-
             using (snEntities db = DBX.DataSet())
             {
-                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+                this.GetSerialDataByID(target_id);
             }
             id_list = null;
             this.FillForm();
@@ -411,7 +435,7 @@ namespace SN_Net.Subform
 
             using (snEntities db = DBX.DataSet())
             {
-                this.current_serial = db.serial.Include("dealer_id_Dealer").Where(s => s.id == target_id).FirstOrDefault();
+                this.GetSerialDataByID(target_id);
             }
 
             id_list = null;
@@ -541,9 +565,9 @@ namespace SN_Net.Subform
                     case SORT_MODE.OLDNUM:
                         return db.serial.OrderBy(s => s.oldnum).Select(s => new SerialIdList { id = s.id, key_value = s.oldnum }).ToList();
                     case SORT_MODE.BUSITYP:
-                        return db.serial.OrderBy(s => s.busityp).Select(s => new SerialIdList { id = s.id, key_value = s.busityp }).ToList();
+                        return db.serial.OrderBy(s => s.busityp).Select(s => new SerialIdList { id = s.id, key_value = s.busityp_Istab.typcod }).ToList();
                     case SORT_MODE.AREA:
-                        return db.serial.OrderBy(s => s.area).Select(s => new SerialIdList { id = s.id, key_value = s.area }).ToList();
+                        return db.serial.OrderBy(s => s.area).Select(s => new SerialIdList { id = s.id, key_value = s.area_Istab.typcod }).ToList();
                     default:
                         return db.serial.OrderBy(s => s.sernum).Select(s => new SerialIdList { id = s.id, key_value = s.sernum }).ToList();
                 }
@@ -1516,6 +1540,82 @@ namespace SN_Net.Subform
             {
                 this.main_form.supportnote_wind.Close();
             }
+        }
+
+        private void dgvProblem_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.RowIndex == -1)
+            {
+                ((XDatagrid)sender).SortByColumn<problemVM>(e.ColumnIndex);
+            }
+            else
+            {
+                if (!(((XDatagrid)sender).Rows[e.RowIndex].Cells["col_problem"].Value is problem))
+                    return;
+
+                this.RemoveInlineControl(sender);
+
+                problem prob = (problem)((XDatagrid)sender).Rows[e.RowIndex].Cells["col_problem"].Value;
+                Rectangle rect = ((XDatagrid)sender).GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                istab probcod = this.istab_probcod.Where(i => i.id == prob.probcod).FirstOrDefault();
+
+                if (e.ColumnIndex == ((XDatagrid)sender).Columns["col_date"].Index)
+                {
+                    ((XDatagrid)sender).Controls.Add(this.inline_prob_date);
+                    this.inline_prob_date.ValDateTime = prob.date.Value;
+                    this.inline_prob_date.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
+                    this.inline_prob_date.Focus();
+                }
+
+                if(e.ColumnIndex == ((XDatagrid)sender).Columns["col_name"].Index)
+                {
+                    ((XDatagrid)sender).Controls.Add(this.inline_prob_name);
+                    this.inline_prob_name.Texts = prob.name;
+                    this.inline_prob_name.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
+                    this.inline_prob_name.Focus();
+                }
+
+                if(e.ColumnIndex == ((XDatagrid)sender).Columns["col_code"].Index)
+                {
+                    ((XDatagrid)sender).Controls.Add(this.inline_prob_code);
+                    this.inline_prob_code._Text = probcod != null ? probcod.typcod : "";
+                    this.inline_prob_code.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
+                    this.inline_prob_code.Focus();
+                }
+
+                if(e.ColumnIndex == ((XDatagrid)sender).Columns["col_desc"].Index)
+                {
+                    if(probcod != null && probcod.typcod == "RG")
+                    {
+                        ((XDatagrid)sender).Controls.Add(this.inline_prob_desc2);
+                        this.inline_prob_desc2.StaticText = this.GetMachineCode(prob.probdesc);
+                        this.inline_prob_desc2.EditableText = prob.probdesc.Substring(this.inline_prob_desc2.StaticText.Length, prob.probdesc.Length - this.inline_prob_desc2.StaticText.Length);
+                        this.inline_prob_desc2.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
+                        this.inline_prob_desc2.Focus();
+                    }
+                    else
+                    {
+                        ((XDatagrid)sender).Controls.Add(this.inline_prob_desc1);
+                        this.inline_prob_desc1.Texts = prob.probdesc;
+                        this.inline_prob_desc1.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
+                        this.inline_prob_desc1.Focus();
+                    }
+                }
+            }
+        }
+
+        private void RemoveInlineControl(object sender)
+        {
+            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-date").FirstOrDefault() != null)
+                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-date").First());
+            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-name").FirstOrDefault() != null)
+                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-name").First());
+            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-code").FirstOrDefault() != null)
+                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-code").First());
+            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc1").FirstOrDefault() != null)
+                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc1").First());
+            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc2").FirstOrDefault() != null)
+                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc2").First());
         }
     }
 

@@ -15,7 +15,7 @@ namespace SN_Net.Models
     public partial class problem
     {
         public int id { get; set; }
-        public string probcod { get; set; }
+        public int probcod { get; set; }
         public string probdesc { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string name { get; set; }
@@ -23,6 +23,7 @@ namespace SN_Net.Models
         public int serial_id { get; set; }
         public int recby { get; set; }
     
+        public virtual istab probcod_Istab { get; set; }
         public virtual users recby_Users { get; set; }
         public virtual serial serial_id_Serial { get; set; }
     }

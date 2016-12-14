@@ -17,21 +17,21 @@ namespace SN_Net.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public users()
         {
-            this.cloud_srv_Recby = new HashSet<cloud_srv>();
-            this.d_msg_Recby = new HashSet<d_msg>();
-            this.dealer_Recby = new HashSet<dealer>();
-            this.event_calendar_Recby = new HashSet<event_calendar>();
-            this.event_calendar_Users_id = new HashSet<event_calendar>();
-            this.istab_Recby = new HashSet<istab>();
-            this.ma_Recby = new HashSet<ma>();
-            this.note_calendar_Recby = new HashSet<note_calendar>();
-            this.problem_Recby = new HashSet<problem>();
-            this.serial_Recby = new HashSet<serial>();
-            this.serial_password_Recby = new HashSet<serial_password>();
-            this.spy_log_Users_id = new HashSet<spy_log>();
-            this.training_calendar_Recby = new HashSet<training_calendar>();
-            this.training_calendar_Users_id = new HashSet<training_calendar>();
-            this.websession_Users_id = new HashSet<websession>();
+            this.cloud_srv = new HashSet<cloud_srv>();
+            this.d_msg = new HashSet<d_msg>();
+            this.dealer = new HashSet<dealer>();
+            this.event_calendar = new HashSet<event_calendar>();
+            this.event_calendar1 = new HashSet<event_calendar>();
+            this.istab = new HashSet<istab>();
+            this.ma = new HashSet<ma>();
+            this.note_calendar = new HashSet<note_calendar>();
+            this.problem = new HashSet<problem>();
+            this.serial = new HashSet<serial>();
+            this.serial_password = new HashSet<serial_password>();
+            this.spy_log = new HashSet<spy_log>();
+            this.training_calendar = new HashSet<training_calendar>();
+            this.training_calendar1 = new HashSet<training_calendar>();
+            this.websession = new HashSet<websession>();
         }
     
         public int id { get; set; }
@@ -49,34 +49,34 @@ namespace SN_Net.Models
         public Nullable<System.DateTime> last_use { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cloud_srv> cloud_srv_Recby { get; set; }
+        public virtual ICollection<cloud_srv> cloud_srv { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<d_msg> d_msg_Recby { get; set; }
+        public virtual ICollection<d_msg> d_msg { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dealer> dealer_Recby { get; set; }
+        public virtual ICollection<dealer> dealer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<event_calendar> event_calendar_Recby { get; set; }
+        public virtual ICollection<event_calendar> event_calendar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<event_calendar> event_calendar_Users_id { get; set; }
+        public virtual ICollection<event_calendar> event_calendar1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<istab> istab_Recby { get; set; }
+        public virtual ICollection<istab> istab { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ma> ma_Recby { get; set; }
+        public virtual ICollection<ma> ma { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<note_calendar> note_calendar_Recby { get; set; }
+        public virtual ICollection<note_calendar> note_calendar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<problem> problem_Recby { get; set; }
+        public virtual ICollection<problem> problem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<serial> serial_Recby { get; set; }
+        public virtual ICollection<serial> serial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<serial_password> serial_password_Recby { get; set; }
+        public virtual ICollection<serial_password> serial_password { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<spy_log> spy_log_Users_id { get; set; }
+        public virtual ICollection<spy_log> spy_log { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<training_calendar> training_calendar_Recby { get; set; }
+        public virtual ICollection<training_calendar> training_calendar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<training_calendar> training_calendar_Users_id { get; set; }
+        public virtual ICollection<training_calendar> training_calendar1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<websession> websession_Users_id { get; set; }
+        public virtual ICollection<websession> websession { get; set; }
     }
 }

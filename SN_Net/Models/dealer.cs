@@ -17,8 +17,8 @@ namespace SN_Net.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public dealer()
         {
-            this.d_msg_Dealer_id = new HashSet<d_msg>();
-            this.serial_Dealer_id = new HashSet<serial>();
+            this.d_msg = new HashSet<d_msg>();
+            this.serial = new HashSet<serial>();
         }
     
         public int id { get; set; }
@@ -40,9 +40,9 @@ namespace SN_Net.Models
         public int recby { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<d_msg> d_msg_Dealer_id { get; set; }
-        public virtual users recby_Users { get; set; }
+        public virtual ICollection<d_msg> d_msg { get; set; }
+        public virtual users users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<serial> serial_Dealer_id { get; set; }
+        public virtual ICollection<serial> serial { get; set; }
     }
 }

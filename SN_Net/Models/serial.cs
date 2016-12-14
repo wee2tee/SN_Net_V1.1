@@ -17,10 +17,10 @@ namespace SN_Net.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public serial()
         {
-            this.cloud_srv_Serial_id = new HashSet<cloud_srv>();
-            this.ma_Serial_id = new HashSet<ma>();
-            this.problem_Serial_id = new HashSet<problem>();
-            this.serial_password_Serial_id = new HashSet<serial_password>();
+            this.Cloud_srv_serial_id = new HashSet<cloud_srv>();
+            this.Ma_serial_id = new HashSet<ma>();
+            this.Problem_serial_id = new HashSet<problem>();
+            this.Serial_password_serial_id = new HashSet<serial_password>();
         }
     
         public int id { get; set; }
@@ -37,32 +37,36 @@ namespace SN_Net.Models
         public string zipcod { get; set; }
         public string telnum { get; set; }
         public string faxnum { get; set; }
-        public string busityp { get; set; }
+        public Nullable<int> area { get; set; }
+        public Nullable<int> busityp { get; set; }
         public string busides { get; set; }
         public Nullable<System.DateTime> purdat { get; set; }
         public Nullable<System.DateTime> expdat { get; set; }
-        public string howknown { get; set; }
-        public string area { get; set; }
         public string branch { get; set; }
         public Nullable<System.DateTime> manual { get; set; }
         public string upfree { get; set; }
         public string refnum { get; set; }
         public string remark { get; set; }
-        public string verext { get; set; }
+        public Nullable<int> howknown { get; set; }
+        public Nullable<int> verext { get; set; }
         public Nullable<System.DateTime> verextdat { get; set; }
         public System.DateTime chgdat { get; set; }
-        public int? dealer_id { get; set; }
+        public Nullable<int> dealer_id { get; set; }
         public int recby { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cloud_srv> cloud_srv_Serial_id { get; set; }
+        public virtual ICollection<cloud_srv> Cloud_srv_serial_id { get; set; }
         public virtual dealer dealer_id_Dealer { get; set; }
+        public virtual istab howknown_Istab { get; set; }
+        public virtual istab area_Istab { get; set; }
+        public virtual istab busityp_Istab { get; set; }
+        public virtual istab verext_Istab { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ma> ma_Serial_id { get; set; }
+        public virtual ICollection<ma> Ma_serial_id { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<problem> problem_Serial_id { get; set; }
+        public virtual ICollection<problem> Problem_serial_id { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<serial_password> serial_password_Serial_id { get; set; }
+        public virtual ICollection<serial_password> Serial_password_serial_id { get; set; }
         public virtual users recby_Users { get; set; }
     }
 }

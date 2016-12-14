@@ -23,7 +23,7 @@ namespace SN_Net.Models
         public int dealer_id { get; set; }
         public int recby { get; set; }
     
-        public virtual dealer dealer_id_Dealer { get; set; }
-        public virtual users recby_Users { get; set; }
+        public virtual dealer dealer { get; set; }
+        public virtual users users { get; set; }
     }
 }

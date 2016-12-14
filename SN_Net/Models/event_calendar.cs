@@ -28,7 +28,7 @@ namespace SN_Net.Models
         public int users_id { get; set; }
         public int recby { get; set; }
     
-        public virtual users recby_Users { get; set; }
-        public virtual users users_id_Users { get; set; }
+        public virtual users users { get; set; }
+        public virtual users users1 { get; set; }
     }
 }

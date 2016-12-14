@@ -19,6 +19,6 @@ namespace SN_Net.Models
         public int users_id { get; set; }
         public string create_time { get; set; }
     
-        public virtual users users_id_Users { get; set; }
+        public virtual users users { get; set; }
     }
 }

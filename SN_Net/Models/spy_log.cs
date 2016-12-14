@@ -20,6 +20,6 @@ namespace SN_Net.Models
         public System.DateTime chgdat { get; set; }
         public int users_id { get; set; }
     
-        public virtual users users_id_Users { get; set; }
+        public virtual users users { get; set; }
     }
 }

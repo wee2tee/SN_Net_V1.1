@@ -14,6 +14,16 @@ namespace SN_Net.Models
     
     public partial class istab
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public istab()
+        {
+            this.problem = new HashSet<problem>();
+            this.serial = new HashSet<serial>();
+            this.serial1 = new HashSet<serial>();
+            this.serial2 = new HashSet<serial>();
+            this.serial3 = new HashSet<serial>();
+        }
+    
         public int id { get; set; }
         public string tabtyp { get; set; }
         public string typcod { get; set; }
@@ -24,6 +34,16 @@ namespace SN_Net.Models
         public System.DateTime chgdat { get; set; }
         public int recby { get; set; }
     
-        public virtual users recby_Users { get; set; }
+        public virtual users users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<problem> problem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<serial> serial { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<serial> serial1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<serial> serial2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<serial> serial3 { get; set; }
     }
 }

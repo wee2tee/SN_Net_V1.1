@@ -24,6 +24,6 @@ namespace SN_Net.Models
         public System.DateTime chgdat { get; set; }
         public int recby { get; set; }
     
-        public virtual users recby_Users { get; set; }
+        public virtual users users { get; set; }
     }
 }

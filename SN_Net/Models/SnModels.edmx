@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="snModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="snModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cloud_srv">
           <Key>
             <PropertyRef Name="id" />
@@ -124,7 +124,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="probcod" Type="varchar" MaxLength="2" />
+          <Property Name="probcod" Type="int" Nullable="false" />
           <Property Name="probdesc" Type="varchar" MaxLength="100" />
           <Property Name="date" Type="date" />
           <Property Name="name" Type="varchar" MaxLength="50" />
@@ -150,18 +150,18 @@
           <Property Name="zipcod" Type="varchar" MaxLength="5" />
           <Property Name="telnum" Type="varchar" MaxLength="40" />
           <Property Name="faxnum" Type="varchar" MaxLength="40" />
-          <Property Name="busityp" Type="varchar" MaxLength="4" />
+          <Property Name="area" Type="int" />
+          <Property Name="busityp" Type="int" />
           <Property Name="busides" Type="varchar" MaxLength="40" />
           <Property Name="purdat" Type="date" />
           <Property Name="expdat" Type="date" />
-          <Property Name="howknown" Type="varchar" MaxLength="4" />
-          <Property Name="area" Type="varchar" MaxLength="10" />
           <Property Name="branch" Type="varchar" MaxLength="1" />
           <Property Name="manual" Type="date" />
           <Property Name="upfree" Type="varchar" MaxLength="1" />
           <Property Name="refnum" Type="varchar" MaxLength="12" />
           <Property Name="remark" Type="varchar" MaxLength="50" />
-          <Property Name="verext" Type="varchar" MaxLength="1" />
+          <Property Name="howknown" Type="int" />
+          <Property Name="verext" Type="int" />
           <Property Name="verextdat" Type="date" />
           <Property Name="chgdat" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dealer_id" Type="int" />
@@ -361,6 +361,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk-problem-probcod">
+          <End Role="istab" Type="Self.istab" Multiplicity="1" />
+          <End Role="problem" Type="Self.problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="problem">
+              <PropertyRef Name="probcod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk-problem-recby">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="problem" Type="Self.problem" Multiplicity="*" />
@@ -382,6 +394,18 @@
             </Principal>
             <Dependent Role="problem">
               <PropertyRef Name="serial_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk-seiral-howknown">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="howknown" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -409,6 +433,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk-serial-area">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk-serial-busityp">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="busityp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk-serial-dealer_id">
           <End Role="dealer" Type="Self.dealer" Multiplicity="0..1" />
           <End Role="serial" Type="Self.serial" Multiplicity="*" />
@@ -430,6 +478,18 @@
             </Principal>
             <Dependent Role="serial">
               <PropertyRef Name="recby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk-serial-verext">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="verext" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -541,6 +601,10 @@
             <End Role="users" EntitySet="users" />
             <End Role="note_calendar" EntitySet="note_calendar" />
           </AssociationSet>
+          <AssociationSet Name="fk-problem-probcod" Association="Self.fk-problem-probcod">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="problem" EntitySet="problem" />
+          </AssociationSet>
           <AssociationSet Name="fk-problem-recby" Association="Self.fk-problem-recby">
             <End Role="users" EntitySet="users" />
             <End Role="problem" EntitySet="problem" />
@@ -548,6 +612,10 @@
           <AssociationSet Name="fk-problem-serial_id" Association="Self.fk-problem-serial_id">
             <End Role="serial" EntitySet="serial" />
             <End Role="problem" EntitySet="problem" />
+          </AssociationSet>
+          <AssociationSet Name="fk-seiral-howknown" Association="Self.fk-seiral-howknown">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
           </AssociationSet>
           <AssociationSet Name="fk-serial_password-recby" Association="Self.fk-serial_password-recby">
             <End Role="users" EntitySet="users" />
@@ -557,12 +625,24 @@
             <End Role="serial" EntitySet="serial" />
             <End Role="serial_password" EntitySet="serial_password" />
           </AssociationSet>
+          <AssociationSet Name="fk-serial-area" Association="Self.fk-serial-area">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
+          <AssociationSet Name="fk-serial-busityp" Association="Self.fk-serial-busityp">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
           <AssociationSet Name="fk-serial-dealer_id" Association="Self.fk-serial-dealer_id">
             <End Role="dealer" EntitySet="dealer" />
             <End Role="serial" EntitySet="serial" />
           </AssociationSet>
           <AssociationSet Name="fk-serial-recby" Association="Self.fk-serial-recby">
             <End Role="users" EntitySet="users" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
+          <AssociationSet Name="fk-serial-verext" Association="Self.fk-serial-verext">
+            <End Role="istab" EntitySet="istab" />
             <End Role="serial" EntitySet="serial" />
           </AssociationSet>
           <AssociationSet Name="fk-spy_log-users_id" Association="Self.fk-spy_log-users_id">
@@ -582,7 +662,8 @@
             <End Role="websession" EntitySet="websession" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="snModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -597,8 +678,8 @@
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="serial_id" Type="Int32" Nullable="false" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_cloud_srv_recby" FromRole="cloud_srv" ToRole="users" />
-          <NavigationProperty Name="serial_id_Serial" Relationship="Self.fk_cloud_srv_serial_id" FromRole="cloud_srv" ToRole="serial" />
+          <NavigationProperty Name="users" Relationship="Self.fk_cloud_srv_recby" FromRole="cloud_srv" ToRole="users" />
+          <NavigationProperty Name="serial" Relationship="Self.fk_cloud_srv_serial_id" FromRole="cloud_srv" ToRole="serial" />
         </EntityType>
         <EntityType Name="d_msg">
           <Key>
@@ -612,8 +693,8 @@
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dealer_id" Type="Int32" Nullable="false" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="dealer_id_Dealer" Relationship="Self.fk_d_msg_dealer_id" FromRole="d_msg" ToRole="dealer" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_d_msg_recby" FromRole="d_msg" ToRole="users" />
+          <NavigationProperty Name="dealer" Relationship="Self.fk_d_msg_dealer_id" FromRole="d_msg" ToRole="dealer" />
+          <NavigationProperty Name="users" Relationship="Self.fk_d_msg_recby" FromRole="d_msg" ToRole="users" />
         </EntityType>
         <EntityType Name="dealer">
           <Key>
@@ -636,9 +717,9 @@
           <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="d_msg_Dealer_id" Relationship="Self.fk_d_msg_dealer_id" FromRole="dealer" ToRole="d_msg" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_dealer_recby" FromRole="dealer" ToRole="users" />
-          <NavigationProperty Name="serial_Dealer_id" Relationship="Self.fk_serial_dealer_id" FromRole="dealer" ToRole="serial" />
+          <NavigationProperty Name="d_msg" Relationship="Self.fk_d_msg_dealer_id" FromRole="dealer" ToRole="d_msg" />
+          <NavigationProperty Name="users" Relationship="Self.fk_dealer_recby" FromRole="dealer" ToRole="users" />
+          <NavigationProperty Name="serial" Relationship="Self.fk_serial_dealer_id" FromRole="dealer" ToRole="serial" />
         </EntityType>
         <EntityType Name="event_calendar">
           <Key>
@@ -657,8 +738,8 @@
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="users_id" Type="Int32" Nullable="false" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_event_calendar_recby" FromRole="event_calendar" ToRole="users" />
-          <NavigationProperty Name="users_id_Users" Relationship="Self.fk_event_calendar_users_id" FromRole="event_calendar" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.fk_event_calendar_recby" FromRole="event_calendar" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.fk_event_calendar_users_id" FromRole="event_calendar" ToRole="users" />
         </EntityType>
         <EntityType Name="istab">
           <Key>
@@ -673,7 +754,12 @@
           <Property Name="typdes_th" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_istab_recby" FromRole="istab" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.fk_istab_recby" FromRole="istab" ToRole="users" />
+          <NavigationProperty Name="problem" Relationship="Self.fk_problem_probcod" FromRole="istab" ToRole="problem" />
+          <NavigationProperty Name="serial" Relationship="Self.fk_seiral_howknown" FromRole="istab" ToRole="serial" />
+          <NavigationProperty Name="serial1" Relationship="Self.fk_serial_area" FromRole="istab" ToRole="serial" />
+          <NavigationProperty Name="serial2" Relationship="Self.fk_serial_busityp" FromRole="istab" ToRole="serial" />
+          <NavigationProperty Name="serial3" Relationship="Self.fk_serial_verext" FromRole="istab" ToRole="serial" />
         </EntityType>
         <EntityType Name="ma">
           <Key>
@@ -686,8 +772,8 @@
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="serial_id" Type="Int32" Nullable="false" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_ma_recby" FromRole="ma" ToRole="users" />
-          <NavigationProperty Name="serial_id_Serial" Relationship="Self.fk_ma_serial_id" FromRole="ma" ToRole="serial" />
+          <NavigationProperty Name="users" Relationship="Self.fk_ma_recby" FromRole="ma" ToRole="users" />
+          <NavigationProperty Name="serial" Relationship="Self.fk_ma_serial_id" FromRole="ma" ToRole="serial" />
         </EntityType>
         <EntityType Name="mac_allowed">
           <Key>
@@ -711,20 +797,21 @@
           <Property Name="max_leave" Type="Int32" Nullable="false" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_note_calendar_recby" FromRole="note_calendar" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.fk_note_calendar_recby" FromRole="note_calendar" ToRole="users" />
         </EntityType>
         <EntityType Name="problem">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="probcod" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="probcod" Type="Int32" Nullable="false" />
           <Property Name="probdesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="date" Type="DateTime" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="serial_id" Type="Int32" Nullable="false" />
           <Property Name="recby" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="probcod_Istab" Relationship="Self.fk_problem_probcod" FromRole="problem" ToRole="istab" />
           <NavigationProperty Name="recby_Users" Relationship="Self.fk_problem_recby" FromRole="problem" ToRole="users" />
           <NavigationProperty Name="serial_id_Serial" Relationship="Self.fk_problem_serial_id" FromRole="problem" ToRole="serial" />
         </EntityType>
@@ -746,27 +833,31 @@
           <Property Name="zipcod" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="telnum" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="faxnum" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="busityp" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="Int32" />
+          <Property Name="busityp" Type="Int32" />
           <Property Name="busides" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="purdat" Type="DateTime" />
           <Property Name="expdat" Type="DateTime" />
-          <Property Name="howknown" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="area" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="branch" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="manual" Type="DateTime" />
           <Property Name="upfree" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="refnum" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="verext" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="howknown" Type="Int32" />
+          <Property Name="verext" Type="Int32" />
           <Property Name="verextdat" Type="DateTime" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dealer_id" Type="Int32" Nullable="false" />
+          <Property Name="dealer_id" Type="Int32" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cloud_srv_Serial_id" Relationship="Self.fk_cloud_srv_serial_id" FromRole="serial" ToRole="cloud_srv" />
+          <NavigationProperty Name="Cloud_srv_serial_id" Relationship="Self.fk_cloud_srv_serial_id" FromRole="serial" ToRole="cloud_srv" />
           <NavigationProperty Name="dealer_id_Dealer" Relationship="Self.fk_serial_dealer_id" FromRole="serial" ToRole="dealer" />
-          <NavigationProperty Name="ma_Serial_id" Relationship="Self.fk_ma_serial_id" FromRole="serial" ToRole="ma" />
-          <NavigationProperty Name="problem_Serial_id" Relationship="Self.fk_problem_serial_id" FromRole="serial" ToRole="problem" />
-          <NavigationProperty Name="serial_password_Serial_id" Relationship="Self.fk_serial_password_serial_id" FromRole="serial" ToRole="serial_password" />
+          <NavigationProperty Name="howknown_Istab" Relationship="Self.fk_seiral_howknown" FromRole="serial" ToRole="istab" />
+          <NavigationProperty Name="area_Istab" Relationship="Self.fk_serial_area" FromRole="serial" ToRole="istab" />
+          <NavigationProperty Name="busityp_Istab" Relationship="Self.fk_serial_busityp" FromRole="serial" ToRole="istab" />
+          <NavigationProperty Name="verext_Istab" Relationship="Self.fk_serial_verext" FromRole="serial" ToRole="istab" />
+          <NavigationProperty Name="Ma_serial_id" Relationship="Self.fk_ma_serial_id" FromRole="serial" ToRole="ma" />
+          <NavigationProperty Name="Problem_serial_id" Relationship="Self.fk_problem_serial_id" FromRole="serial" ToRole="problem" />
+          <NavigationProperty Name="Serial_password_serial_id" Relationship="Self.fk_serial_password_serial_id" FromRole="serial" ToRole="serial_password" />
           <NavigationProperty Name="recby_Users" Relationship="Self.fk_serial_recby" FromRole="serial" ToRole="users" />
         </EntityType>
         <EntityType Name="serial_password">
@@ -779,8 +870,8 @@
           <Property Name="serial_id" Type="Int32" Nullable="false" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="serial_id_Serial" Relationship="Self.fk_serial_password_serial_id" FromRole="serial_password" ToRole="serial" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_serial_password_recby" FromRole="serial_password" ToRole="users" />
+          <NavigationProperty Name="serial" Relationship="Self.fk_serial_password_serial_id" FromRole="serial_password" ToRole="serial" />
+          <NavigationProperty Name="users" Relationship="Self.fk_serial_password_recby" FromRole="serial_password" ToRole="users" />
         </EntityType>
         <EntityType Name="spy_log">
           <Key>
@@ -791,7 +882,7 @@
           <Property Name="compnam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="users_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="users_id_Users" Relationship="Self.fk_spy_log_users_id" FromRole="spy_log" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.fk_spy_log_users_id" FromRole="spy_log" ToRole="users" />
         </EntityType>
         <EntityType Name="training_calendar">
           <Key>
@@ -806,8 +897,8 @@
           <Property Name="chgdat" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="users_id" Type="Int32" Nullable="false" />
           <Property Name="recby" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="recby_Users" Relationship="Self.fk_training_calendar_recby" FromRole="training_calendar" ToRole="users" />
-          <NavigationProperty Name="users_id_Users" Relationship="Self.fk_training_calendar_users_id" FromRole="training_calendar" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.fk_training_calendar_recby" FromRole="training_calendar" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.fk_training_calendar_users_id" FromRole="training_calendar" ToRole="users" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -826,21 +917,21 @@
           <Property Name="max_absent" Type="Int32" Nullable="false" />
           <Property Name="create_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="last_use" Type="DateTime" />
-          <NavigationProperty Name="cloud_srv_Recby" Relationship="Self.fk_cloud_srv_recby" FromRole="users" ToRole="cloud_srv" />
-          <NavigationProperty Name="d_msg_Recby" Relationship="Self.fk_d_msg_recby" FromRole="users" ToRole="d_msg" />
-          <NavigationProperty Name="dealer_Recby" Relationship="Self.fk_dealer_recby" FromRole="users" ToRole="dealer" />
-          <NavigationProperty Name="event_calendar_Recby" Relationship="Self.fk_event_calendar_recby" FromRole="users" ToRole="event_calendar" />
-          <NavigationProperty Name="event_calendar_Users_id" Relationship="Self.fk_event_calendar_users_id" FromRole="users" ToRole="event_calendar" />
-          <NavigationProperty Name="istab_Recby" Relationship="Self.fk_istab_recby" FromRole="users" ToRole="istab" />
-          <NavigationProperty Name="ma_Recby" Relationship="Self.fk_ma_recby" FromRole="users" ToRole="ma" />
-          <NavigationProperty Name="note_calendar_Recby" Relationship="Self.fk_note_calendar_recby" FromRole="users" ToRole="note_calendar" />
-          <NavigationProperty Name="problem_Recby" Relationship="Self.fk_problem_recby" FromRole="users" ToRole="problem" />
-          <NavigationProperty Name="serial_Recby" Relationship="Self.fk_serial_recby" FromRole="users" ToRole="serial" />
-          <NavigationProperty Name="serial_password_Recby" Relationship="Self.fk_serial_password_recby" FromRole="users" ToRole="serial_password" />
-          <NavigationProperty Name="spy_log_Users_id" Relationship="Self.fk_spy_log_users_id" FromRole="users" ToRole="spy_log" />
-          <NavigationProperty Name="training_calendar_Recby" Relationship="Self.fk_training_calendar_recby" FromRole="users" ToRole="training_calendar" />
-          <NavigationProperty Name="training_calendar_Users_id" Relationship="Self.fk_training_calendar_users_id" FromRole="users" ToRole="training_calendar" />
-          <NavigationProperty Name="websession_Users_id" Relationship="Self.fk_websession_users_id" FromRole="users" ToRole="websession" />
+          <NavigationProperty Name="cloud_srv" Relationship="Self.fk_cloud_srv_recby" FromRole="users" ToRole="cloud_srv" />
+          <NavigationProperty Name="d_msg" Relationship="Self.fk_d_msg_recby" FromRole="users" ToRole="d_msg" />
+          <NavigationProperty Name="dealer" Relationship="Self.fk_dealer_recby" FromRole="users" ToRole="dealer" />
+          <NavigationProperty Name="event_calendar" Relationship="Self.fk_event_calendar_recby" FromRole="users" ToRole="event_calendar" />
+          <NavigationProperty Name="event_calendar1" Relationship="Self.fk_event_calendar_users_id" FromRole="users" ToRole="event_calendar" />
+          <NavigationProperty Name="istab" Relationship="Self.fk_istab_recby" FromRole="users" ToRole="istab" />
+          <NavigationProperty Name="ma" Relationship="Self.fk_ma_recby" FromRole="users" ToRole="ma" />
+          <NavigationProperty Name="note_calendar" Relationship="Self.fk_note_calendar_recby" FromRole="users" ToRole="note_calendar" />
+          <NavigationProperty Name="problem" Relationship="Self.fk_problem_recby" FromRole="users" ToRole="problem" />
+          <NavigationProperty Name="serial" Relationship="Self.fk_serial_recby" FromRole="users" ToRole="serial" />
+          <NavigationProperty Name="serial_password" Relationship="Self.fk_serial_password_recby" FromRole="users" ToRole="serial_password" />
+          <NavigationProperty Name="spy_log" Relationship="Self.fk_spy_log_users_id" FromRole="users" ToRole="spy_log" />
+          <NavigationProperty Name="training_calendar" Relationship="Self.fk_training_calendar_recby" FromRole="users" ToRole="training_calendar" />
+          <NavigationProperty Name="training_calendar1" Relationship="Self.fk_training_calendar_users_id" FromRole="users" ToRole="training_calendar" />
+          <NavigationProperty Name="websession" Relationship="Self.fk_websession_users_id" FromRole="users" ToRole="websession" />
         </EntityType>
         <EntityType Name="websession">
           <Key>
@@ -850,7 +941,7 @@
           <Property Name="exp_time" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="users_id" Type="Int32" Nullable="false" />
           <Property Name="create_time" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="users_id_Users" Relationship="Self.fk_websession_users_id" FromRole="websession" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.fk_websession_users_id" FromRole="websession" ToRole="users" />
         </EntityType>
         <Association Name="fk_cloud_srv_recby">
           <End Role="users" Type="Self.users" Multiplicity="1" />
@@ -913,7 +1004,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_serial_dealer_id">
-          <End Role="dealer" Type="Self.dealer" Multiplicity="1" />
+          <End Role="dealer" Type="Self.dealer" Multiplicity="0..1" />
           <End Role="serial" Type="Self.serial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="dealer">
@@ -957,6 +1048,66 @@
             </Principal>
             <Dependent Role="istab">
               <PropertyRef Name="recby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_problem_probcod">
+          <End Role="istab" Type="Self.istab" Multiplicity="1" />
+          <End Role="problem" Type="Self.problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="problem">
+              <PropertyRef Name="probcod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_seiral_howknown">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="howknown" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_serial_area">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_serial_busityp">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="busityp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_serial_verext">
+          <End Role="istab" Type="Self.istab" Multiplicity="0..1" />
+          <End Role="serial" Type="Self.serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istab">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="serial">
+              <PropertyRef Name="verext" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1156,6 +1307,26 @@
             <End Role="users" EntitySet="users" />
             <End Role="istab" EntitySet="istab" />
           </AssociationSet>
+          <AssociationSet Name="fk_problem_probcod" Association="Self.fk_problem_probcod">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="problem" EntitySet="problem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_seiral_howknown" Association="Self.fk_seiral_howknown">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_serial_area" Association="Self.fk_serial_area">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_serial_busityp" Association="Self.fk_serial_busityp">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_serial_verext" Association="Self.fk_serial_verext">
+            <End Role="istab" EntitySet="istab" />
+            <End Role="serial" EntitySet="serial" />
+          </AssociationSet>
           <AssociationSet Name="fk_ma_recby" Association="Self.fk_ma_recby">
             <End Role="users" EntitySet="users" />
             <End Role="ma" EntitySet="ma" />
@@ -1241,8 +1412,8 @@
           <EntitySetMapping Name="dealer">
             <EntityTypeMapping TypeName="snModel.dealer">
               <MappingFragment StoreEntitySet="dealer">
-                <ScalarProperty Name="dealercode" ColumnName="dealercode" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dealercode" ColumnName="dealercode" />
                 <ScalarProperty Name="prenam" ColumnName="prenam" />
                 <ScalarProperty Name="compnam" ColumnName="compnam" />
                 <ScalarProperty Name="addr01" ColumnName="addr01" />
@@ -1364,17 +1535,17 @@
                 <ScalarProperty Name="zipcod" ColumnName="zipcod" />
                 <ScalarProperty Name="telnum" ColumnName="telnum" />
                 <ScalarProperty Name="faxnum" ColumnName="faxnum" />
+                <ScalarProperty Name="area" ColumnName="area" />
                 <ScalarProperty Name="busityp" ColumnName="busityp" />
                 <ScalarProperty Name="busides" ColumnName="busides" />
                 <ScalarProperty Name="purdat" ColumnName="purdat" />
                 <ScalarProperty Name="expdat" ColumnName="expdat" />
-                <ScalarProperty Name="howknown" ColumnName="howknown" />
-                <ScalarProperty Name="area" ColumnName="area" />
                 <ScalarProperty Name="branch" ColumnName="branch" />
                 <ScalarProperty Name="manual" ColumnName="manual" />
                 <ScalarProperty Name="upfree" ColumnName="upfree" />
                 <ScalarProperty Name="refnum" ColumnName="refnum" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="howknown" ColumnName="howknown" />
                 <ScalarProperty Name="verext" ColumnName="verext" />
                 <ScalarProperty Name="verextdat" ColumnName="verextdat" />
                 <ScalarProperty Name="chgdat" ColumnName="chgdat" />

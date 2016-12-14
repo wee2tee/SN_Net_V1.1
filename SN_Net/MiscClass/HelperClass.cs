@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SN_Net.DataModels;
 using SN_Net.Subform;
+using SN_Net.Models;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
@@ -590,6 +591,36 @@ namespace SN_Net.MiscClass
             }
 
             return note;
+        }
+
+        public static problemVM ToViewModel(this problem problem, IEnumerable<istab> probcod_istab)
+        {
+            if (problem == null)
+                return null;
+
+            problemVM p = new problemVM
+            {
+                id = problem.id,
+                date = problem.date,
+                name = problem.name,
+                probcod = probcod_istab.Where(pc => pc.id == problem.probcod) != null ? probcod_istab.Where(pc => pc.id == problem.probcod).First().typcod : "",
+                probdesc = problem.probdesc,
+                problem = problem
+            };
+
+            return p;
+        }
+
+        public static List<problemVM> ToViewModel(this IEnumerable<problem> problem_list, IEnumerable<istab> probcod_istab)
+        {
+            List<problemVM> p = new List<problemVM>();
+
+            foreach (var item in problem_list)
+            {
+                p.Add(item.ToViewModel(probcod_istab));
+            }
+
+            return p;
         }
     }
 }
