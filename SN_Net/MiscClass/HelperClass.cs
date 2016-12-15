@@ -598,7 +598,9 @@ namespace SN_Net.MiscClass
             if (problem == null)
                 return null;
 
-            problemVM p = new problemVM
+            problemVM p;
+
+            p = new problemVM
             {
                 id = problem.id,
                 date = problem.date,

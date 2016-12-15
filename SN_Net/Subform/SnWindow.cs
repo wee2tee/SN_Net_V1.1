@@ -118,6 +118,7 @@ namespace SN_Net.Subform
         private CustomBrowseField inline_prob_code = new CustomBrowseField() { Name = "inline-prob-code", _ReadOnly = false };
         private CustomTextBox inline_prob_desc1 = new CustomTextBox() { Name = "inline-prob-desc1", Read_Only = false };
         private CustomTextBoxMaskedWithLabel inline_prob_desc2 = new CustomTextBoxMaskedWithLabel() { Name = "inline-prob-desc2", Read_Only = false };
+        private Control inline_problem_control;
         /***********************/
 
         public SnWindow(MainForm main_form)
@@ -173,7 +174,13 @@ namespace SN_Net.Subform
                 return;
 
             this.bs_problem.ResetBindings(true);
-            this.bs_problem.DataSource = this.current_serial.Problem_serial_id.ToViewModel(this.istab_probcod);
+            var x = this.current_serial.Problem_serial_id;
+            List<problemVM> problem = this.current_serial.Problem_serial_id.ToViewModel(this.istab_probcod);
+            for (int i = 0; i < 50; i++)
+            {
+                problem.Add(new problemVM());
+            }
+            this.bs_problem.DataSource = problem;
 
             this.txtSernum.Texts = this.current_serial.sernum;
             this.txtVersion.Texts = this.current_serial.version;
@@ -1544,78 +1551,201 @@ namespace SN_Net.Subform
 
         private void dgvProblem_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.RowIndex == -1)
+            //if (e.RowIndex == -1)
+            //{
+            //    ((XDatagrid)sender).SortByColumn<problemVM>(e.ColumnIndex);
+            //}
+            
+            //if(e.Button == MouseButtons.Right && e.RowIndex > -1)
+            //{
+            //    ((XDatagrid)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+
+            //    problem problem = (problem)((XDatagrid)sender).Rows[((XDatagrid)sender).CurrentCell.RowIndex].Cells["col_problem"].Value;
+
+            //    ContextMenu cm = new ContextMenu();
+            //    MenuItem mnu_add = new MenuItem();
+            //    mnu_add.Text = "";
+            //    mnu_add.Click += delegate
+            //    {
+
+            //    };
+            //    mnu_add.Enabled = problem == null ? true : false;
+
+            //    cm.MenuItems.Add(mnu_add);
+            //    cm.Show((XDatagrid)sender, new Point(e.X, e.Y));
+            //}
+        }
+
+        private void dgvProblem_MouseClick(object sender, MouseEventArgs e)
+        {
+            DataGridView.HitTestInfo hinfo = ((XDatagrid)sender).HitTest(e.X, e.Y);
+            int row_index = hinfo.RowIndex;
+            int col_index = hinfo.ColumnIndex;
+
+            if (row_index == -1)
             {
-                ((XDatagrid)sender).SortByColumn<problemVM>(e.ColumnIndex);
+                ((XDatagrid)sender).SortByColumn<problemVM>(col_index);
             }
-            else
+
+            if (e.Button == MouseButtons.Right && row_index > -1)
             {
-                if (!(((XDatagrid)sender).Rows[e.RowIndex].Cells["col_problem"].Value is problem))
-                    return;
+                ((XDatagrid)sender).Rows[row_index].Cells["col_date"].Selected = true;
 
-                this.RemoveInlineControl(sender);
+                problem problem = (problem)((XDatagrid)sender).Rows[((XDatagrid)sender).CurrentCell.RowIndex].Cells["col_problem"].Value;
 
-                problem prob = (problem)((XDatagrid)sender).Rows[e.RowIndex].Cells["col_problem"].Value;
-                Rectangle rect = ((XDatagrid)sender).GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-                istab probcod = this.istab_probcod.Where(i => i.id == prob.probcod).FirstOrDefault();
-
-                if (e.ColumnIndex == ((XDatagrid)sender).Columns["col_date"].Index)
+                ContextMenu cm = new ContextMenu();
+                MenuItem mnu_add = new MenuItem();
+                mnu_add.Text = "Add <Alt + A>";
+                mnu_add.Click += delegate
                 {
-                    ((XDatagrid)sender).Controls.Add(this.inline_prob_date);
-                    this.inline_prob_date.ValDateTime = prob.date.Value;
-                    this.inline_prob_date.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
-                    this.inline_prob_date.Focus();
+                    this.form_mode = FORM_MODE.ADD_ITEM;
+                    //this.current_serial.Problem_serial_id.Add(new problem { id = -1, date = DateTime.Now, name = string.Empty, probcod = -1, probdesc = string.Empty, chgdat = DateTime.Now, serial_id = -1, recby = -1 });
+                    //this.FillForm();
+                    ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells["col_date"].Value = DateTime.Now;
+                    ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells["col_name"].Value = string.Empty;
+                    ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells["col_code"].Value = string.Empty;
+                    ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells["col_desc"].Value = string.Empty;
+                    ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells["col_date"];
+
+                    ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells["col_date"];
+                };
+                cm.MenuItems.Add(mnu_add);
+
+                MenuItem mnu_edit = new MenuItem();
+                mnu_edit.Text = "Edit <Alt + E>";
+                mnu_edit.Enabled = problem != null ? true : false;
+                mnu_edit.Click += delegate
+                {
+
+                };
+                cm.MenuItems.Add(mnu_edit);
+
+                MenuItem mnu_delete = new MenuItem();
+                mnu_delete.Text = "Delete <Alt + D>";
+                mnu_delete.Enabled = problem != null ? true : false;
+                mnu_delete.Click += delegate
+                {
+
+                };
+                cm.MenuItems.Add(mnu_delete);
+
+                cm.Show((XDatagrid)sender, new Point(e.X, e.Y));
+            }
+        }
+
+        private void dgvProblem_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (!(this.form_mode == FORM_MODE.ADD_ITEM || this.form_mode == FORM_MODE.EDIT_ITEM))
+                return;
+
+            if (((XDatagrid)sender).CurrentCell == null)
+                return;
+
+            DataGridViewCell current_cell = ((XDatagrid)sender).CurrentCell;
+
+            //if (!(((XDatagrid)sender).Rows[current_cell.RowIndex].Cells["col_problem"].Value is problem))
+            //    return;
+
+            this.RemoveInlineControl(sender);
+
+            problem prob = (problem)((XDatagrid)sender).Rows[current_cell.RowIndex].Cells["col_problem"].Value;
+            if (prob == null)
+            {
+                prob = new Models.problem
+                {
+                    id = -1,
+                    date = DateTime.Now,
+                    name = string.Empty,
+                    probcod = -1,
+                    probdesc = string.Empty
+                };
+            }
+
+            Rectangle rect = ((XDatagrid)sender).GetCellDisplayRectangle(current_cell.ColumnIndex, current_cell.RowIndex, true);
+            istab probcod = this.istab_probcod.Where(i => i.id == prob.probcod).FirstOrDefault();
+
+            if (current_cell.ColumnIndex == ((XDatagrid)sender).Columns["col_date"].Index)
+            {
+                this.inline_problem_control = new CustomDateTimePicker() { Read_Only = false };
+                ((XDatagrid)sender).Parent.Controls.Add(this.inline_problem_control);
+                ((CustomDateTimePicker)this.inline_problem_control).ValDateTime = prob.date.Value;
+                this.SetInlineControlPosition(((XDatagrid)sender), ((XDatagrid)sender).Rows[current_cell.RowIndex].Cells[current_cell.ColumnIndex], this.inline_problem_control);
+            }
+
+            if (current_cell.ColumnIndex == ((XDatagrid)sender).Columns["col_name"].Index)
+            {
+                this.inline_problem_control = new CustomTextBox() { Read_Only = false };
+                ((XDatagrid)sender).Parent.Controls.Add(this.inline_problem_control);
+                ((CustomTextBox)this.inline_problem_control).Texts = prob.name;
+                this.SetInlineControlPosition(((XDatagrid)sender), ((XDatagrid)sender).Rows[current_cell.RowIndex].Cells[current_cell.ColumnIndex], this.inline_problem_control);
+            }
+
+            if (current_cell.ColumnIndex == ((XDatagrid)sender).Columns["col_code"].Index)
+            {
+                this.inline_problem_control = new CustomBrowseField() { _ReadOnly = false };
+                ((XDatagrid)sender).Parent.Controls.Add(this.inline_problem_control);
+                ((CustomBrowseField)this.inline_problem_control)._Text = probcod != null ? probcod.typcod : "";
+                this.SetInlineControlPosition(((XDatagrid)sender), ((XDatagrid)sender).Rows[current_cell.RowIndex].Cells[current_cell.ColumnIndex], this.inline_problem_control);
+            }
+
+            if (current_cell.ColumnIndex == ((XDatagrid)sender).Columns["col_desc"].Index)
+            {
+                if (probcod != null && probcod.typcod == "RG" && this.main_form.loged_in_user.level < (int)USER_LEVEL.ADMIN + 1)
+                {
+                    this.inline_problem_control = new CustomTextBoxMaskedWithLabel() { Read_Only = false };
+                    ((XDatagrid)sender).Parent.Controls.Add(this.inline_problem_control);
+                    ((CustomTextBoxMaskedWithLabel)this.inline_problem_control).StaticText = this.GetMachineCode(prob.probdesc);
+                    ((CustomTextBoxMaskedWithLabel)this.inline_problem_control).EditableText = prob.probdesc.Substring(((CustomTextBoxMaskedWithLabel)this.inline_problem_control).StaticText.Length, prob.probdesc.Length - ((CustomTextBoxMaskedWithLabel)this.inline_problem_control).StaticText.Length);
+                    this.SetInlineControlPosition(((XDatagrid)sender), ((XDatagrid)sender).Rows[current_cell.RowIndex].Cells[current_cell.ColumnIndex], this.inline_problem_control);
                 }
-
-                if(e.ColumnIndex == ((XDatagrid)sender).Columns["col_name"].Index)
+                else
                 {
-                    ((XDatagrid)sender).Controls.Add(this.inline_prob_name);
-                    this.inline_prob_name.Texts = prob.name;
-                    this.inline_prob_name.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
-                    this.inline_prob_name.Focus();
-                }
-
-                if(e.ColumnIndex == ((XDatagrid)sender).Columns["col_code"].Index)
-                {
-                    ((XDatagrid)sender).Controls.Add(this.inline_prob_code);
-                    this.inline_prob_code._Text = probcod != null ? probcod.typcod : "";
-                    this.inline_prob_code.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
-                    this.inline_prob_code.Focus();
-                }
-
-                if(e.ColumnIndex == ((XDatagrid)sender).Columns["col_desc"].Index)
-                {
-                    if(probcod != null && probcod.typcod == "RG")
-                    {
-                        ((XDatagrid)sender).Controls.Add(this.inline_prob_desc2);
-                        this.inline_prob_desc2.StaticText = this.GetMachineCode(prob.probdesc);
-                        this.inline_prob_desc2.EditableText = prob.probdesc.Substring(this.inline_prob_desc2.StaticText.Length, prob.probdesc.Length - this.inline_prob_desc2.StaticText.Length);
-                        this.inline_prob_desc2.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
-                        this.inline_prob_desc2.Focus();
-                    }
-                    else
-                    {
-                        ((XDatagrid)sender).Controls.Add(this.inline_prob_desc1);
-                        this.inline_prob_desc1.Texts = prob.probdesc;
-                        this.inline_prob_desc1.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
-                        this.inline_prob_desc1.Focus();
-                    }
+                    this.inline_problem_control = new CustomTextBox() { Read_Only = false };
+                    ((XDatagrid)sender).Parent.Controls.Add(this.inline_problem_control);
+                    ((CustomTextBox)this.inline_problem_control).Texts = prob.probdesc;
+                    this.SetInlineControlPosition(((XDatagrid)sender), ((XDatagrid)sender).Rows[current_cell.RowIndex].Cells[current_cell.ColumnIndex], this.inline_problem_control);
                 }
             }
         }
 
+        private void dgvProblem_Scroll(object sender, ScrollEventArgs e)
+        {
+            if(this.current_serial.Problem_serial_id.Count == 0)
+            {
+                ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count].Cells[1];
+                ((XDatagrid)sender).FirstDisplayedScrollingRowIndex = 0;
+            }
+            else
+            {
+                if (((XDatagrid)sender).FirstDisplayedScrollingRowIndex >= this.current_serial.Problem_serial_id.Count)
+                {
+                    ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count - 1].Cells[1];
+                    ((XDatagrid)sender).FirstDisplayedScrollingRowIndex = this.current_serial.Problem_serial_id.Count - 1;
+                }
+            }
+
+            if (this.inline_problem_control == null || this.dgvProblem.CurrentCell == null)
+                return;
+
+            this.SetInlineControlPosition(this.dgvProblem, this.dgvProblem.CurrentCell, this.inline_problem_control);
+        }
+
+        private void SetInlineControlPosition(DataGridView dgv, DataGridViewCell cell, Control control)
+        {
+            Rectangle rect = dgv.GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
+            control.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
+            dgv.SendToBack();
+            control.BringToFront();
+            control.Focus();
+        }
+
         private void RemoveInlineControl(object sender)
         {
-            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-date").FirstOrDefault() != null)
-                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-date").First());
-            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-name").FirstOrDefault() != null)
-                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-name").First());
-            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-code").FirstOrDefault() != null)
-                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-code").First());
-            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc1").FirstOrDefault() != null)
-                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc1").First());
-            if (((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc2").FirstOrDefault() != null)
-                ((XDatagrid)sender).Controls.Remove(((XDatagrid)sender).Controls.Cast<Control>().Where(c => c.Name == "inline-prob-desc2").First());
+            if(this.inline_problem_control != null)
+            {
+                this.inline_problem_control.Dispose();
+                this.inline_problem_control = null;
+            }
         }
     }
 

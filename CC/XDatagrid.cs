@@ -22,6 +22,7 @@ namespace CC
                 this.row_border_redline = value;
             }
         }
+
         private bool allow_sort_by_column_header_clicked;
         public bool AllowSortByColumnHeaderClicked
         {
@@ -34,6 +35,20 @@ namespace CC
                 this.allow_sort_by_column_header_clicked = value;
             }
         }
+
+        private bool fill_empty_row = false;
+        public bool FillEmptyRow
+        {
+            get
+            {
+                return this.fill_empty_row;
+            }
+            set
+            {
+                this.fill_empty_row = value;
+            }
+        }
+
         private int sort_column = -1;
         public int SortColumn
         {
@@ -42,6 +57,7 @@ namespace CC
                 return this.sort_column;
             }
         }
+
         private bool sort_asc = true;
         public bool SortASC
         {
@@ -96,15 +112,26 @@ namespace CC
             this.AttachEventHandler();
         }
 
+        protected override void OnDataBindingComplete(DataGridViewBindingCompleteEventArgs e)
+        {
+            base.OnDataBindingComplete(e);
+            //DataGridViewRow row = new DataGridViewRow();
+            //foreach (DataGridViewColumn col in this.Columns)
+            //{
+            //    row.Cells[col.Index].Value = null;
+            //}
+
+            //this.Rows.Add(row);
+        }
+
         private void AttachEventHandler()
         {
             if (this.row_border_redline)
             {
-                this.Paint += new PaintEventHandler(this.DrawRowBorder);
+                this.Paint += new PaintEventHandler(this.DgvPainted);
             }
             if (this.allow_sort_by_column_header_clicked)
             {
-                //this.CellMouseClick += new DataGridViewCellMouseEventHandler(this.SortByColumnHeaderClicked);
                 this.CellPainting += new DataGridViewCellPaintingEventHandler(this.DrawColumnHeaderSortSign);
             }
         }
@@ -156,7 +183,7 @@ namespace CC
             }
         }
 
-        private void DrawRowBorder(object sender, PaintEventArgs e)
+        private void DgvPainted(object sender, PaintEventArgs e)
         {
             if (this.CurrentCell == null)
                 return;
