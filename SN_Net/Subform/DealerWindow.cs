@@ -751,7 +751,7 @@ namespace SN_Net.Subform
         private void btnBrowseArea_Click(object sender, EventArgs e)
         {
             this.txtArea.Focus();
-            IstabList wind = new IstabList(this.main_form, this.txtArea.Texts, Istab.TABTYP.AREA);
+            _IstabList wind = new _IstabList(this.main_form, this.txtArea.Texts, Istab.TABTYP.AREA);
             if (wind.ShowDialog() == DialogResult.OK)
             {
                 this.txtArea.Texts = wind.istab.typcod;

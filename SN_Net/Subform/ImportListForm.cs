@@ -558,7 +558,7 @@ namespace SN_Net.Subform
 
         private void btnBrowseBusityp_Click(object sender, EventArgs e)
         {
-            IstabList wind = new IstabList(this.parent_window.main_form, this.sBusityp.Text.cleanString(), Istab.TABTYP.BUSITYP);
+            _IstabList wind = new _IstabList(this.parent_window.main_form, this.sBusityp.Text.cleanString(), Istab.TABTYP.BUSITYP);
             if (wind.ShowDialog() == DialogResult.OK)
             {
                 this.sBusityp.Text = wind.istab.typcod;

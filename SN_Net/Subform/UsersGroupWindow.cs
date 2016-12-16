@@ -197,7 +197,7 @@ namespace SN_Net.Subform
                         MenuItem m_sendto = new MenuItem("จัดเข้าในกลุ่ม...");
                         m_sendto.Click += delegate
                         {
-                            IstabList gwind = new IstabList(this.main_form, "", Istab.TABTYP.USER_GROUP, list_group);
+                            _IstabList gwind = new _IstabList(this.main_form, "", Istab.TABTYP.USER_GROUP, list_group);
                             gwind.btnAdd.Visible = false;
                             gwind.btnEdit.Visible = false;
                             if (gwind.ShowDialog() == DialogResult.OK)
@@ -1133,7 +1133,7 @@ namespace SN_Net.Subform
 
         private void btnInquiryAll_Click(object sender, EventArgs e)
         {
-            IstabList gwind = new IstabList(this.main_form, "", Istab.TABTYP.USER_GROUP, this.list_group);
+            _IstabList gwind = new _IstabList(this.main_form, "", Istab.TABTYP.USER_GROUP, this.list_group);
             gwind.btnAdd.Visible = false;
             gwind.btnEdit.Visible = false;
             if (gwind.ShowDialog() == DialogResult.OK)
@@ -1144,7 +1144,7 @@ namespace SN_Net.Subform
 
         private void btnInquiryRest_Click(object sender, EventArgs e)
         {
-            IstabList gwind = new IstabList(this.main_form, this.current_group.typcod, Istab.TABTYP.USER_GROUP, this.list_group);
+            _IstabList gwind = new _IstabList(this.main_form, this.current_group.typcod, Istab.TABTYP.USER_GROUP, this.list_group);
             gwind.btnAdd.Visible = false;
             gwind.btnEdit.Visible = false;
             if (gwind.ShowDialog() == DialogResult.OK)

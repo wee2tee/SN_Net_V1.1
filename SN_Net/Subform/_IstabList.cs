@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace SN_Net.Subform
 {
-    public partial class IstabList : Form
+    public partial class _IstabList : Form
     {
         private const string SORT_TYPCOD = "typcod";
         private const string SORT_TYPDES = "typdes";
@@ -26,13 +26,13 @@ namespace SN_Net.Subform
         private string selected_typcod;
         private List<Istab> passing_list;
 
-        public IstabList()
+        public _IstabList()
         {
             InitializeComponent();
         }
 
         //public IstabList(SnWindow parent_window, string typcod, Istab.TABTYP tabtyp)
-        public IstabList(MainForm main_form, string typcod, Istab.TABTYP tabtyp)
+        public _IstabList(MainForm main_form, string typcod, Istab.TABTYP tabtyp)
             :   this()
         {
             //this.parent_window = parent_window;
@@ -43,7 +43,7 @@ namespace SN_Net.Subform
             this.sort_by = SORT_TYPCOD;
         }
 
-        public IstabList(MainForm main_form, string typcod, Istab.TABTYP tabtyp, List<Istab> list_istab)
+        public _IstabList(MainForm main_form, string typcod, Istab.TABTYP tabtyp, List<Istab> list_istab)
             : this(main_form, typcod, tabtyp)
         {
             this.passing_list = list_istab;

@@ -31,5 +31,7 @@ namespace SN_Net.Models
         public string abbreviate_th { get; set; }
         public string typdes_en { get; set; }
         public string typdes_th { get; set; }
+
+        public istab istab { get; set; }
     }
 }

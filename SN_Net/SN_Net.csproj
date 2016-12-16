@@ -399,6 +399,12 @@
     <Compile Include="Subform\IstabAddEditForm.Designer.cs">
       <DependentUpon>IstabAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Subform\IstabListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subform\IstabListDialog.Designer.cs">
+      <DependentUpon>IstabListDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Subform\IstabWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -549,11 +555,11 @@
     <Compile Include="Subform\SnWindow.Designer.cs">
       <DependentUpon>SnWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Subform\IstabList.cs">
+    <Compile Include="Subform\_IstabList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Subform\IstabList.Designer.cs">
-      <DependentUpon>IstabList.cs</DependentUpon>
+    <Compile Include="Subform\_IstabList.Designer.cs">
+      <DependentUpon>_IstabList.cs</DependentUpon>
     </Compile>
     <Compile Include="Subform\SplashPreventMenustripActive.cs">
       <SubType>Form</SubType>
@@ -756,6 +762,9 @@
     <EmbeddedResource Include="Subform\IstabAddEditForm.resx">
       <DependentUpon>IstabAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Subform\IstabListDialog.resx">
+      <DependentUpon>IstabListDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Subform\IstabWindow.resx">
       <DependentUpon>IstabWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -831,8 +840,8 @@
     <EmbeddedResource Include="Subform\SnWindow.resx">
       <DependentUpon>SnWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Subform\IstabList.resx">
-      <DependentUpon>IstabList.cs</DependentUpon>
+    <EmbeddedResource Include="Subform\_IstabList.resx">
+      <DependentUpon>_IstabList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Subform\SplashPreventMenustripActive.resx">
       <DependentUpon>SplashPreventMenustripActive.cs</DependentUpon>

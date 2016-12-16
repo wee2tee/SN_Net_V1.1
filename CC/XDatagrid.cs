@@ -126,10 +126,10 @@ namespace CC
 
         private void AttachEventHandler()
         {
-            if (this.row_border_redline)
-            {
+            //if (this.row_border_redline)
+            //{
                 this.Paint += new PaintEventHandler(this.DgvPainted);
-            }
+            //}
             if (this.allow_sort_by_column_header_clicked)
             {
                 this.CellPainting += new DataGridViewCellPaintingEventHandler(this.DrawColumnHeaderSortSign);
@@ -185,6 +185,9 @@ namespace CC
 
         private void DgvPainted(object sender, PaintEventArgs e)
         {
+            if (!this.row_border_redline)
+                return;
+
             if (this.CurrentCell == null)
                 return;
 

@@ -1,6 +1,6 @@
 ﻿namespace SN_Net.Subform
 {
-    partial class IstabList
+    partial class _IstabList
     {
         /// <summary>
         /// Required designer variable.

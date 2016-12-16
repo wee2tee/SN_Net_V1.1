@@ -593,14 +593,44 @@ namespace SN_Net.MiscClass
             return note;
         }
 
+        public static istabVM ToViewModel(this istab istab)
+        {
+            if (istab == null)
+                return null;
+
+            istabVM i = new istabVM
+            {
+                id = istab.id,
+                tabtyp = istab.tabtyp,
+                typcod = istab.typcod,
+                abbreviate_en = istab.abbreviate_en,
+                abbreviate_th = istab.abbreviate_th,
+                typdes_en = istab.typdes_en,
+                typdes_th = istab.typdes_th,
+                istab = istab
+            };
+
+            return i;
+        }
+
+        public static List<istabVM> ToViewModel(this IEnumerable<istab> istab_list)
+        {
+            List<istabVM> i = new List<istabVM>();
+
+            foreach (var item in istab_list)
+            {
+                i.Add(item.ToViewModel());
+            }
+
+            return i;
+        }
+
         public static problemVM ToViewModel(this problem problem, IEnumerable<istab> probcod_istab)
         {
             if (problem == null)
                 return null;
 
-            problemVM p;
-
-            p = new problemVM
+            problemVM p = new problemVM
             {
                 id = problem.id,
                 date = problem.date,
