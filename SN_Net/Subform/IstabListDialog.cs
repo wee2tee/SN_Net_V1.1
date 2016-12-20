@@ -73,6 +73,13 @@ namespace SN_Net.Subform
                 return true;
             }
 
+            if(keyData == Keys.Enter)
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -81,6 +88,7 @@ namespace SN_Net.Subform
             if (((XDatagrid)sender).CurrentCell == null)
                 return;
 
+            this.btnOK.Enabled = true;
             this.selected_istab = (istab)((XDatagrid)sender).Rows[((XDatagrid)sender).CurrentCell.RowIndex].Cells["col_istab"].Value;
         }
     }

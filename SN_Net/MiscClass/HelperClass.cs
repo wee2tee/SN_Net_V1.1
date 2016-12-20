@@ -637,7 +637,9 @@ namespace SN_Net.MiscClass
                 name = problem.name,
                 probcod = probcod_istab.Where(pc => pc.id == problem.probcod) != null ? probcod_istab.Where(pc => pc.id == problem.probcod).First().typcod : "",
                 probdesc = problem.probdesc,
-                problem = problem
+                problem = problem,
+                chgdat = problem.chgdat,
+                state = problem.id < 0 ? 1 : 0
             };
 
             return p;

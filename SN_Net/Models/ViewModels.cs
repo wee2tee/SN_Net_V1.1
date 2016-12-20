@@ -12,7 +12,9 @@ namespace SN_Net.Models
         public string probdesc { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string name { get; set; }
+        public DateTime chgdat { get; set; }
 
+        public int state { get; set; } // 0 = existing data, 1 = new data
         public problem problem { get; set; }
     }
 

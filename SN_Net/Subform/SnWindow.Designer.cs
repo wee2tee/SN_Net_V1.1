@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -41,6 +42,9 @@
             this.btnEditCloud = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cloudEmail = new SN_Net.MiscClass.CustomTextBox();
+            this.cloudDateTo = new SN_Net.MiscClass.CustomDateTimePicker();
+            this.cloudDateFrom = new SN_Net.MiscClass.CustomDateTimePicker();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -48,9 +52,23 @@
             this.btnEditMA = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.maEmail = new SN_Net.MiscClass.CustomTextBox();
+            this.maDateTo = new SN_Net.MiscClass.CustomDateTimePicker();
+            this.maDateFrom = new SN_Net.MiscClass.CustomDateTimePicker();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.dtVerextdat = new SN_Net.MiscClass.CustomDateTimePicker();
+            this.dtManual = new SN_Net.MiscClass.CustomDateTimePicker();
+            this.dtExpdat = new SN_Net.MiscClass.CustomDateTimePicker();
+            this.dtPurdat = new SN_Net.MiscClass.CustomDateTimePicker();
+            this.cbVerext = new SN_Net.MiscClass.CustomComboBox();
+            this.txtUpfree = new SN_Net.MiscClass.CustomTextBox();
+            this.txtHowknown = new SN_Net.MiscClass.CustomTextBox();
+            this.txtDealer = new SN_Net.MiscClass.CustomTextBox();
+            this.txtBusityp = new SN_Net.MiscClass.CustomTextBox();
+            this.txtBusides = new SN_Net.MiscClass.CustomTextBox();
+            this.txtRemark = new SN_Net.MiscClass.CustomTextBox();
             this.lblHowknownTypdes = new System.Windows.Forms.Label();
             this.btnBrowseHowknown = new System.Windows.Forms.Button();
             this.btnBrowseDealer = new System.Windows.Forms.Button();
@@ -71,6 +89,15 @@
             this.btnPasswordAdd = new System.Windows.Forms.Button();
             this.dgvPassword = new System.Windows.Forms.DataGridView();
             this.label31 = new System.Windows.Forms.Label();
+            this.txtOldnum = new SN_Net.MiscClass.CustomMaskedTextBox();
+            this.txtPosition = new SN_Net.MiscClass.CustomTextBox();
+            this.txtContact = new SN_Net.MiscClass.CustomTextBox();
+            this.txtFaxnum = new SN_Net.MiscClass.CustomTextBox();
+            this.txtTelnum = new SN_Net.MiscClass.CustomTextBox();
+            this.txtZipcod = new SN_Net.MiscClass.CustomTextBox();
+            this.txtAddr03 = new SN_Net.MiscClass.CustomTextBox();
+            this.txtAddr02 = new SN_Net.MiscClass.CustomTextBox();
+            this.txtAddr01 = new SN_Net.MiscClass.CustomTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -94,6 +121,8 @@
             this.col_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_state = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_chgdat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_problem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripAdd = new System.Windows.Forms.ToolStripButton();
@@ -139,6 +168,12 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.btnSupportViewNote = new System.Windows.Forms.Button();
             this.btnSupportNote = new System.Windows.Forms.Button();
+            this.txtCompnam = new SN_Net.MiscClass.CustomTextBox();
+            this.txtSernum = new SN_Net.MiscClass.CustomMaskedTextBox();
+            this.txtRefnum = new SN_Net.MiscClass.CustomTextBox();
+            this.txtArea = new SN_Net.MiscClass.CustomTextBox();
+            this.txtVersion = new SN_Net.MiscClass.CustomTextBox();
+            this.txtPrenam = new SN_Net.MiscClass.CustomTextBox();
             this.btnCD = new System.Windows.Forms.Button();
             this.btnUP = new System.Windows.Forms.Button();
             this.btnUPNewRwt = new System.Windows.Forms.Button();
@@ -151,38 +186,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProcessing = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtCompnam = new SN_Net.MiscClass.CustomTextBox();
-            this.txtSernum = new SN_Net.MiscClass.CustomMaskedTextBox();
-            this.txtRefnum = new SN_Net.MiscClass.CustomTextBox();
-            this.txtArea = new SN_Net.MiscClass.CustomTextBox();
-            this.txtVersion = new SN_Net.MiscClass.CustomTextBox();
-            this.txtPrenam = new SN_Net.MiscClass.CustomTextBox();
-            this.cloudEmail = new SN_Net.MiscClass.CustomTextBox();
-            this.cloudDateTo = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.cloudDateFrom = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.maEmail = new SN_Net.MiscClass.CustomTextBox();
-            this.maDateTo = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.maDateFrom = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.dtVerextdat = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.dtManual = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.dtExpdat = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.dtPurdat = new SN_Net.MiscClass.CustomDateTimePicker();
-            this.cbVerext = new SN_Net.MiscClass.CustomComboBox();
-            this.txtUpfree = new SN_Net.MiscClass.CustomTextBox();
-            this.txtHowknown = new SN_Net.MiscClass.CustomTextBox();
-            this.txtDealer = new SN_Net.MiscClass.CustomTextBox();
-            this.txtBusityp = new SN_Net.MiscClass.CustomTextBox();
-            this.txtBusides = new SN_Net.MiscClass.CustomTextBox();
-            this.txtRemark = new SN_Net.MiscClass.CustomTextBox();
-            this.txtOldnum = new SN_Net.MiscClass.CustomMaskedTextBox();
-            this.txtPosition = new SN_Net.MiscClass.CustomTextBox();
-            this.txtContact = new SN_Net.MiscClass.CustomTextBox();
-            this.txtFaxnum = new SN_Net.MiscClass.CustomTextBox();
-            this.txtTelnum = new SN_Net.MiscClass.CustomTextBox();
-            this.txtZipcod = new SN_Net.MiscClass.CustomTextBox();
-            this.txtAddr03 = new SN_Net.MiscClass.CustomTextBox();
-            this.txtAddr02 = new SN_Net.MiscClass.CustomTextBox();
-            this.txtAddr01 = new SN_Net.MiscClass.CustomTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -347,6 +350,57 @@
             this.panel2.Size = new System.Drawing.Size(240, 81);
             this.panel2.TabIndex = 144;
             // 
+            // cloudEmail
+            // 
+            this.cloudEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cloudEmail.BackColor = System.Drawing.Color.White;
+            this.cloudEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cloudEmail.CharUpperCase = false;
+            this.cloudEmail.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cloudEmail.Location = new System.Drawing.Point(45, 53);
+            this.cloudEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cloudEmail.MaxChar = 0;
+            this.cloudEmail.Name = "cloudEmail";
+            this.cloudEmail.Read_Only = true;
+            this.cloudEmail.SelectionLength = 0;
+            this.cloudEmail.SelectionStart = 0;
+            this.cloudEmail.Size = new System.Drawing.Size(190, 23);
+            this.cloudEmail.TabIndex = 147;
+            this.cloudEmail.Texts = "";
+            // 
+            // cloudDateTo
+            // 
+            this.cloudDateTo.BackColor = System.Drawing.Color.White;
+            this.cloudDateTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cloudDateTo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cloudDateTo.Location = new System.Drawing.Point(45, 29);
+            this.cloudDateTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cloudDateTo.Name = "cloudDateTo";
+            this.cloudDateTo.Read_Only = true;
+            this.cloudDateTo.Size = new System.Drawing.Size(96, 23);
+            this.cloudDateTo.TabIndex = 146;
+            this.cloudDateTo.Texts = "20/12/2559";
+            this.cloudDateTo.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.cloudDateTo, "<F6> = Show Calendar");
+            this.cloudDateTo.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 211);
+            // 
+            // cloudDateFrom
+            // 
+            this.cloudDateFrom.BackColor = System.Drawing.Color.White;
+            this.cloudDateFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cloudDateFrom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cloudDateFrom.Location = new System.Drawing.Point(45, 3);
+            this.cloudDateFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cloudDateFrom.Name = "cloudDateFrom";
+            this.cloudDateFrom.Read_Only = true;
+            this.cloudDateFrom.Size = new System.Drawing.Size(96, 23);
+            this.cloudDateFrom.TabIndex = 145;
+            this.cloudDateFrom.Texts = "20/12/2559";
+            this.cloudDateFrom.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.cloudDateFrom, "<F6> = Show Calendar");
+            this.cloudDateFrom.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 213);
+            // 
             // label37
             // 
             this.label37.AutoSize = true;
@@ -422,6 +476,57 @@
             this.panel4.Size = new System.Drawing.Size(240, 81);
             this.panel4.TabIndex = 140;
             // 
+            // maEmail
+            // 
+            this.maEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maEmail.BackColor = System.Drawing.Color.White;
+            this.maEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maEmail.CharUpperCase = false;
+            this.maEmail.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.maEmail.Location = new System.Drawing.Point(45, 53);
+            this.maEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.maEmail.MaxChar = 0;
+            this.maEmail.Name = "maEmail";
+            this.maEmail.Read_Only = true;
+            this.maEmail.SelectionLength = 0;
+            this.maEmail.SelectionStart = 0;
+            this.maEmail.Size = new System.Drawing.Size(190, 23);
+            this.maEmail.TabIndex = 147;
+            this.maEmail.Texts = "";
+            // 
+            // maDateTo
+            // 
+            this.maDateTo.BackColor = System.Drawing.Color.White;
+            this.maDateTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maDateTo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.maDateTo.Location = new System.Drawing.Point(45, 29);
+            this.maDateTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.maDateTo.Name = "maDateTo";
+            this.maDateTo.Read_Only = true;
+            this.maDateTo.Size = new System.Drawing.Size(96, 23);
+            this.maDateTo.TabIndex = 146;
+            this.maDateTo.Texts = "20/12/2559";
+            this.maDateTo.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.maDateTo, "<F6> = Show Calendar");
+            this.maDateTo.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 217);
+            // 
+            // maDateFrom
+            // 
+            this.maDateFrom.BackColor = System.Drawing.Color.White;
+            this.maDateFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maDateFrom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.maDateFrom.Location = new System.Drawing.Point(45, 3);
+            this.maDateFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.maDateFrom.Name = "maDateFrom";
+            this.maDateFrom.Read_Only = true;
+            this.maDateFrom.Size = new System.Drawing.Size(96, 23);
+            this.maDateFrom.TabIndex = 145;
+            this.maDateFrom.Texts = "20/12/2559";
+            this.maDateFrom.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.maDateFrom, "<F6> = Show Calendar");
+            this.maDateFrom.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 219);
+            // 
             // label35
             // 
             this.label35.AutoSize = true;
@@ -451,6 +556,189 @@
             this.label33.Size = new System.Drawing.Size(26, 16);
             this.label33.TabIndex = 142;
             this.label33.Text = "เริ่ม";
+            // 
+            // dtVerextdat
+            // 
+            this.dtVerextdat.BackColor = System.Drawing.Color.White;
+            this.dtVerextdat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtVerextdat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.dtVerextdat.Location = new System.Drawing.Point(668, 240);
+            this.dtVerextdat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtVerextdat.Name = "dtVerextdat";
+            this.dtVerextdat.Read_Only = true;
+            this.dtVerextdat.Size = new System.Drawing.Size(96, 23);
+            this.dtVerextdat.TabIndex = 25;
+            this.dtVerextdat.Texts = "20/12/2559";
+            this.dtVerextdat.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.dtVerextdat, "<F6> = Show Calendar");
+            this.dtVerextdat.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 221);
+            // 
+            // dtManual
+            // 
+            this.dtManual.BackColor = System.Drawing.Color.White;
+            this.dtManual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtManual.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.dtManual.Location = new System.Drawing.Point(668, 215);
+            this.dtManual.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtManual.Name = "dtManual";
+            this.dtManual.Read_Only = true;
+            this.dtManual.Size = new System.Drawing.Size(96, 23);
+            this.dtManual.TabIndex = 23;
+            this.dtManual.Texts = "20/12/2559";
+            this.dtManual.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.dtManual, "<F6> = Show Calendar");
+            this.dtManual.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 223);
+            // 
+            // dtExpdat
+            // 
+            this.dtExpdat.BackColor = System.Drawing.Color.White;
+            this.dtExpdat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtExpdat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.dtExpdat.Location = new System.Drawing.Point(359, 240);
+            this.dtExpdat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtExpdat.Name = "dtExpdat";
+            this.dtExpdat.Read_Only = true;
+            this.dtExpdat.Size = new System.Drawing.Size(96, 23);
+            this.dtExpdat.TabIndex = 21;
+            this.dtExpdat.Texts = "20/12/2559";
+            this.dtExpdat.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.dtExpdat, "<F6> = Show Calendar");
+            this.dtExpdat.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 225);
+            // 
+            // dtPurdat
+            // 
+            this.dtPurdat.BackColor = System.Drawing.Color.White;
+            this.dtPurdat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtPurdat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.dtPurdat.Location = new System.Drawing.Point(110, 240);
+            this.dtPurdat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtPurdat.Name = "dtPurdat";
+            this.dtPurdat.Read_Only = true;
+            this.dtPurdat.Size = new System.Drawing.Size(96, 23);
+            this.dtPurdat.TabIndex = 20;
+            this.dtPurdat.Texts = "20/12/2559";
+            this.dtPurdat.TextsMysql = "2016-12-20";
+            this.toolTip1.SetToolTip(this.dtPurdat, "<F6> = Show Calendar");
+            this.dtPurdat.ValDateTime = new System.DateTime(2016, 12, 20, 15, 58, 12, 227);
+            // 
+            // cbVerext
+            // 
+            this.cbVerext.BackColor = System.Drawing.Color.White;
+            this.cbVerext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cbVerext.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cbVerext.Location = new System.Drawing.Point(477, 240);
+            this.cbVerext.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbVerext.Name = "cbVerext";
+            this.cbVerext.Read_Only = true;
+            this.cbVerext.Size = new System.Drawing.Size(182, 24);
+            this.cbVerext.TabIndex = 24;
+            this.cbVerext.Texts = null;
+            this.toolTip1.SetToolTip(this.cbVerext, "<F6> = Show Item");
+            // 
+            // txtUpfree
+            // 
+            this.txtUpfree.BackColor = System.Drawing.Color.White;
+            this.txtUpfree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUpfree.CharUpperCase = false;
+            this.txtUpfree.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtUpfree.Location = new System.Drawing.Point(668, 190);
+            this.txtUpfree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtUpfree.MaxChar = 0;
+            this.txtUpfree.Name = "txtUpfree";
+            this.txtUpfree.Read_Only = true;
+            this.txtUpfree.SelectionLength = 0;
+            this.txtUpfree.SelectionStart = 0;
+            this.txtUpfree.Size = new System.Drawing.Size(20, 23);
+            this.txtUpfree.TabIndex = 22;
+            this.txtUpfree.Texts = "";
+            // 
+            // txtHowknown
+            // 
+            this.txtHowknown.BackColor = System.Drawing.Color.White;
+            this.txtHowknown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtHowknown.CharUpperCase = false;
+            this.txtHowknown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtHowknown.Location = new System.Drawing.Point(110, 215);
+            this.txtHowknown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtHowknown.MaxChar = 0;
+            this.txtHowknown.Name = "txtHowknown";
+            this.txtHowknown.Read_Only = true;
+            this.txtHowknown.SelectionLength = 0;
+            this.txtHowknown.SelectionStart = 0;
+            this.txtHowknown.Size = new System.Drawing.Size(70, 23);
+            this.txtHowknown.TabIndex = 19;
+            this.txtHowknown.Texts = "";
+            this.toolTip1.SetToolTip(this.txtHowknown, "<F6> = How to Know List");
+            // 
+            // txtDealer
+            // 
+            this.txtDealer.BackColor = System.Drawing.Color.White;
+            this.txtDealer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDealer.CharUpperCase = false;
+            this.txtDealer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtDealer.Location = new System.Drawing.Point(110, 95);
+            this.txtDealer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDealer.MaxChar = 0;
+            this.txtDealer.Name = "txtDealer";
+            this.txtDealer.Read_Only = true;
+            this.txtDealer.SelectionLength = 0;
+            this.txtDealer.SelectionStart = 0;
+            this.txtDealer.Size = new System.Drawing.Size(139, 23);
+            this.txtDealer.TabIndex = 18;
+            this.txtDealer.Texts = "";
+            this.toolTip1.SetToolTip(this.txtDealer, "<F6> = Dealer List");
+            // 
+            // txtBusityp
+            // 
+            this.txtBusityp.BackColor = System.Drawing.Color.White;
+            this.txtBusityp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBusityp.CharUpperCase = false;
+            this.txtBusityp.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtBusityp.Location = new System.Drawing.Point(110, 70);
+            this.txtBusityp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBusityp.MaxChar = 0;
+            this.txtBusityp.Name = "txtBusityp";
+            this.txtBusityp.Read_Only = true;
+            this.txtBusityp.SelectionLength = 0;
+            this.txtBusityp.SelectionStart = 0;
+            this.txtBusityp.Size = new System.Drawing.Size(70, 23);
+            this.txtBusityp.TabIndex = 17;
+            this.txtBusityp.Texts = "";
+            this.toolTip1.SetToolTip(this.txtBusityp, "<F6> = Business Type List");
+            // 
+            // txtBusides
+            // 
+            this.txtBusides.BackColor = System.Drawing.Color.White;
+            this.txtBusides.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBusides.CharUpperCase = false;
+            this.txtBusides.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtBusides.Location = new System.Drawing.Point(110, 45);
+            this.txtBusides.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBusides.MaxChar = 0;
+            this.txtBusides.Name = "txtBusides";
+            this.txtBusides.Read_Only = true;
+            this.txtBusides.SelectionLength = 0;
+            this.txtBusides.SelectionStart = 0;
+            this.txtBusides.Size = new System.Drawing.Size(442, 23);
+            this.txtBusides.TabIndex = 16;
+            this.txtBusides.Texts = "";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.BackColor = System.Drawing.Color.White;
+            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemark.CharUpperCase = false;
+            this.txtRemark.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtRemark.Location = new System.Drawing.Point(110, 20);
+            this.txtRemark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRemark.MaxChar = 0;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Read_Only = true;
+            this.txtRemark.SelectionLength = 0;
+            this.txtRemark.SelectionStart = 0;
+            this.txtRemark.Size = new System.Drawing.Size(442, 23);
+            this.txtRemark.TabIndex = 15;
+            this.txtRemark.Texts = "";
             // 
             // lblHowknownTypdes
             // 
@@ -687,6 +975,158 @@
             this.label31.TabIndex = 29;
             this.label31.Text = "Password";
             // 
+            // txtOldnum
+            // 
+            this.txtOldnum.BackColor = System.Drawing.Color.White;
+            this.txtOldnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtOldnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtOldnum.Location = new System.Drawing.Point(632, 169);
+            this.txtOldnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtOldnum.MaskString = ">A-AAA-AAAAAA";
+            this.txtOldnum.Name = "txtOldnum";
+            this.txtOldnum.Read_Only = true;
+            this.txtOldnum.SelectedStringBegin = 0;
+            this.txtOldnum.SelectedStringEnd = 0;
+            this.txtOldnum.Size = new System.Drawing.Size(118, 23);
+            this.txtOldnum.TabIndex = 14;
+            this.txtOldnum.Texts = "";
+            // 
+            // txtPosition
+            // 
+            this.txtPosition.BackColor = System.Drawing.Color.White;
+            this.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPosition.CharUpperCase = false;
+            this.txtPosition.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtPosition.Location = new System.Drawing.Point(110, 169);
+            this.txtPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPosition.MaxChar = 0;
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Read_Only = true;
+            this.txtPosition.SelectionLength = 0;
+            this.txtPosition.SelectionStart = 0;
+            this.txtPosition.Size = new System.Drawing.Size(442, 23);
+            this.txtPosition.TabIndex = 13;
+            this.txtPosition.Texts = "";
+            // 
+            // txtContact
+            // 
+            this.txtContact.BackColor = System.Drawing.Color.White;
+            this.txtContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtContact.CharUpperCase = false;
+            this.txtContact.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtContact.Location = new System.Drawing.Point(110, 144);
+            this.txtContact.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtContact.MaxChar = 0;
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Read_Only = true;
+            this.txtContact.SelectionLength = 0;
+            this.txtContact.SelectionStart = 0;
+            this.txtContact.Size = new System.Drawing.Size(442, 23);
+            this.txtContact.TabIndex = 12;
+            this.txtContact.Texts = "";
+            // 
+            // txtFaxnum
+            // 
+            this.txtFaxnum.BackColor = System.Drawing.Color.White;
+            this.txtFaxnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFaxnum.CharUpperCase = false;
+            this.txtFaxnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtFaxnum.Location = new System.Drawing.Point(110, 119);
+            this.txtFaxnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtFaxnum.MaxChar = 0;
+            this.txtFaxnum.Name = "txtFaxnum";
+            this.txtFaxnum.Read_Only = true;
+            this.txtFaxnum.SelectionLength = 0;
+            this.txtFaxnum.SelectionStart = 0;
+            this.txtFaxnum.Size = new System.Drawing.Size(442, 23);
+            this.txtFaxnum.TabIndex = 11;
+            this.txtFaxnum.Texts = "";
+            // 
+            // txtTelnum
+            // 
+            this.txtTelnum.BackColor = System.Drawing.Color.White;
+            this.txtTelnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTelnum.CharUpperCase = false;
+            this.txtTelnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtTelnum.Location = new System.Drawing.Point(110, 94);
+            this.txtTelnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTelnum.MaxChar = 0;
+            this.txtTelnum.Name = "txtTelnum";
+            this.txtTelnum.Read_Only = true;
+            this.txtTelnum.SelectionLength = 0;
+            this.txtTelnum.SelectionStart = 0;
+            this.txtTelnum.Size = new System.Drawing.Size(442, 23);
+            this.txtTelnum.TabIndex = 10;
+            this.txtTelnum.Texts = "";
+            // 
+            // txtZipcod
+            // 
+            this.txtZipcod.BackColor = System.Drawing.Color.White;
+            this.txtZipcod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtZipcod.CharUpperCase = false;
+            this.txtZipcod.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtZipcod.Location = new System.Drawing.Point(483, 69);
+            this.txtZipcod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtZipcod.MaxChar = 0;
+            this.txtZipcod.Name = "txtZipcod";
+            this.txtZipcod.Read_Only = true;
+            this.txtZipcod.SelectionLength = 0;
+            this.txtZipcod.SelectionStart = 0;
+            this.txtZipcod.Size = new System.Drawing.Size(69, 23);
+            this.txtZipcod.TabIndex = 9;
+            this.txtZipcod.Texts = "";
+            // 
+            // txtAddr03
+            // 
+            this.txtAddr03.BackColor = System.Drawing.Color.White;
+            this.txtAddr03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddr03.CharUpperCase = false;
+            this.txtAddr03.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtAddr03.Location = new System.Drawing.Point(110, 69);
+            this.txtAddr03.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAddr03.MaxChar = 0;
+            this.txtAddr03.Name = "txtAddr03";
+            this.txtAddr03.Read_Only = true;
+            this.txtAddr03.SelectionLength = 0;
+            this.txtAddr03.SelectionStart = 0;
+            this.txtAddr03.Size = new System.Drawing.Size(271, 23);
+            this.txtAddr03.TabIndex = 8;
+            this.txtAddr03.Texts = "";
+            // 
+            // txtAddr02
+            // 
+            this.txtAddr02.BackColor = System.Drawing.Color.White;
+            this.txtAddr02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddr02.CharUpperCase = false;
+            this.txtAddr02.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtAddr02.Location = new System.Drawing.Point(110, 44);
+            this.txtAddr02.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAddr02.MaxChar = 0;
+            this.txtAddr02.Name = "txtAddr02";
+            this.txtAddr02.Read_Only = true;
+            this.txtAddr02.SelectionLength = 0;
+            this.txtAddr02.SelectionStart = 0;
+            this.txtAddr02.Size = new System.Drawing.Size(442, 23);
+            this.txtAddr02.TabIndex = 7;
+            this.txtAddr02.Texts = "";
+            // 
+            // txtAddr01
+            // 
+            this.txtAddr01.BackColor = System.Drawing.Color.White;
+            this.txtAddr01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddr01.CharUpperCase = false;
+            this.txtAddr01.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtAddr01.Location = new System.Drawing.Point(110, 19);
+            this.txtAddr01.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAddr01.MaxChar = 0;
+            this.txtAddr01.Name = "txtAddr01";
+            this.txtAddr01.Read_Only = true;
+            this.txtAddr01.SelectionLength = 0;
+            this.txtAddr01.SelectionStart = 0;
+            this.txtAddr01.Size = new System.Drawing.Size(442, 23);
+            this.txtAddr01.TabIndex = 6;
+            this.txtAddr01.Texts = "";
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -903,7 +1343,17 @@
             this.col_name,
             this.col_code,
             this.col_desc,
+            this.col_state,
+            this.col_chgdat,
             this.col_problem});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProblem.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProblem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProblem.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvProblem.EnableHeadersVisualStyles = false;
@@ -919,9 +1369,11 @@
             this.dgvProblem.Size = new System.Drawing.Size(929, 457);
             this.dgvProblem.StandardTab = true;
             this.dgvProblem.TabIndex = 1;
+            this.dgvProblem.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProblem_CellDoubleClick);
             this.dgvProblem.CurrentCellChanged += new System.EventHandler(this.dgvProblem_CurrentCellChanged);
             this.dgvProblem.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvProblem_Scroll);
             this.dgvProblem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvProblem_MouseClick);
+            this.dgvProblem.Resize += new System.EventHandler(this.dgvProblem_Resize);
             // 
             // col_id
             // 
@@ -973,6 +1425,22 @@
             this.col_desc.HeaderText = "DESC.";
             this.col_desc.Name = "col_desc";
             this.col_desc.ReadOnly = true;
+            // 
+            // col_state
+            // 
+            this.col_state.DataPropertyName = "state";
+            this.col_state.HeaderText = "State";
+            this.col_state.Name = "col_state";
+            this.col_state.ReadOnly = true;
+            this.col_state.Visible = false;
+            // 
+            // col_chgdat
+            // 
+            this.col_chgdat.DataPropertyName = "chgdat";
+            this.col_chgdat.HeaderText = "Chgdat";
+            this.col_chgdat.Name = "col_chgdat";
+            this.col_chgdat.ReadOnly = true;
+            this.col_chgdat.Visible = false;
             // 
             // col_problem
             // 
@@ -1466,6 +1934,108 @@
             this.toolTip1.SetToolTip(this.btnSupportNote, "บันทึกรายละเอียดการสนทนากับลูกค้า");
             this.btnSupportNote.UseVisualStyleBackColor = true;
             // 
+            // txtCompnam
+            // 
+            this.txtCompnam.BackColor = System.Drawing.Color.White;
+            this.txtCompnam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCompnam.CharUpperCase = false;
+            this.txtCompnam.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtCompnam.Location = new System.Drawing.Point(202, 83);
+            this.txtCompnam.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCompnam.MaxChar = 0;
+            this.txtCompnam.Name = "txtCompnam";
+            this.txtCompnam.Read_Only = true;
+            this.txtCompnam.SelectionLength = 0;
+            this.txtCompnam.SelectionStart = 0;
+            this.txtCompnam.Size = new System.Drawing.Size(370, 23);
+            this.txtCompnam.TabIndex = 5;
+            this.txtCompnam.Texts = "";
+            // 
+            // txtSernum
+            // 
+            this.txtSernum.BackColor = System.Drawing.Color.White;
+            this.txtSernum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSernum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtSernum.Location = new System.Drawing.Point(81, 55);
+            this.txtSernum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSernum.MaskString = ">A-AAA-AAAAAA";
+            this.txtSernum.Name = "txtSernum";
+            this.txtSernum.Read_Only = true;
+            this.txtSernum.SelectedStringBegin = 0;
+            this.txtSernum.SelectedStringEnd = 0;
+            this.txtSernum.Size = new System.Drawing.Size(118, 23);
+            this.txtSernum.TabIndex = 0;
+            this.txtSernum.Texts = "";
+            // 
+            // txtRefnum
+            // 
+            this.txtRefnum.BackColor = System.Drawing.Color.White;
+            this.txtRefnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRefnum.CharUpperCase = false;
+            this.txtRefnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtRefnum.Location = new System.Drawing.Point(694, 52);
+            this.txtRefnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRefnum.MaxChar = 0;
+            this.txtRefnum.Name = "txtRefnum";
+            this.txtRefnum.Read_Only = true;
+            this.txtRefnum.SelectionLength = 0;
+            this.txtRefnum.SelectionStart = 0;
+            this.txtRefnum.Size = new System.Drawing.Size(118, 23);
+            this.txtRefnum.TabIndex = 3;
+            this.txtRefnum.Texts = "";
+            // 
+            // txtArea
+            // 
+            this.txtArea.BackColor = System.Drawing.Color.White;
+            this.txtArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtArea.CharUpperCase = false;
+            this.txtArea.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtArea.Location = new System.Drawing.Point(390, 55);
+            this.txtArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtArea.MaxChar = 0;
+            this.txtArea.Name = "txtArea";
+            this.txtArea.Read_Only = true;
+            this.txtArea.SelectionLength = 0;
+            this.txtArea.SelectionStart = 0;
+            this.txtArea.Size = new System.Drawing.Size(80, 23);
+            this.txtArea.TabIndex = 2;
+            this.txtArea.Texts = "";
+            this.toolTip1.SetToolTip(this.txtArea, "<F6> = Area List");
+            // 
+            // txtVersion
+            // 
+            this.txtVersion.BackColor = System.Drawing.Color.White;
+            this.txtVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtVersion.CharUpperCase = false;
+            this.txtVersion.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtVersion.Location = new System.Drawing.Point(270, 55);
+            this.txtVersion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtVersion.MaxChar = 0;
+            this.txtVersion.Name = "txtVersion";
+            this.txtVersion.Read_Only = true;
+            this.txtVersion.SelectionLength = 0;
+            this.txtVersion.SelectionStart = 0;
+            this.txtVersion.Size = new System.Drawing.Size(60, 23);
+            this.txtVersion.TabIndex = 1;
+            this.txtVersion.Texts = "";
+            // 
+            // txtPrenam
+            // 
+            this.txtPrenam.BackColor = System.Drawing.Color.White;
+            this.txtPrenam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrenam.CharUpperCase = false;
+            this.txtPrenam.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtPrenam.Location = new System.Drawing.Point(81, 83);
+            this.txtPrenam.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPrenam.MaxChar = 0;
+            this.txtPrenam.Name = "txtPrenam";
+            this.txtPrenam.Read_Only = true;
+            this.txtPrenam.SelectionLength = 0;
+            this.txtPrenam.SelectionStart = 0;
+            this.txtPrenam.Size = new System.Drawing.Size(118, 23);
+            this.txtPrenam.TabIndex = 4;
+            this.txtPrenam.Texts = "";
+            // 
             // btnCD
             // 
             this.btnCD.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -1591,545 +2161,6 @@
             this.toolStripProcessing.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.toolStripProcessing.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripProcessing.Visible = false;
-            // 
-            // txtCompnam
-            // 
-            this.txtCompnam.BackColor = System.Drawing.Color.White;
-            this.txtCompnam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCompnam.CharUpperCase = false;
-            this.txtCompnam.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtCompnam.Location = new System.Drawing.Point(202, 83);
-            this.txtCompnam.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCompnam.MaxChar = 0;
-            this.txtCompnam.Name = "txtCompnam";
-            this.txtCompnam.Read_Only = true;
-            this.txtCompnam.SelectionLength = 0;
-            this.txtCompnam.SelectionStart = 0;
-            this.txtCompnam.Size = new System.Drawing.Size(370, 23);
-            this.txtCompnam.TabIndex = 5;
-            this.txtCompnam.Texts = "";
-            // 
-            // txtSernum
-            // 
-            this.txtSernum.BackColor = System.Drawing.Color.White;
-            this.txtSernum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSernum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtSernum.Location = new System.Drawing.Point(81, 55);
-            this.txtSernum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSernum.MaskString = ">A-AAA-AAAAAA";
-            this.txtSernum.Name = "txtSernum";
-            this.txtSernum.Read_Only = true;
-            this.txtSernum.SelectedStringBegin = 0;
-            this.txtSernum.SelectedStringEnd = 0;
-            this.txtSernum.Size = new System.Drawing.Size(118, 23);
-            this.txtSernum.TabIndex = 0;
-            this.txtSernum.Texts = "";
-            // 
-            // txtRefnum
-            // 
-            this.txtRefnum.BackColor = System.Drawing.Color.White;
-            this.txtRefnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRefnum.CharUpperCase = false;
-            this.txtRefnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtRefnum.Location = new System.Drawing.Point(694, 52);
-            this.txtRefnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtRefnum.MaxChar = 0;
-            this.txtRefnum.Name = "txtRefnum";
-            this.txtRefnum.Read_Only = true;
-            this.txtRefnum.SelectionLength = 0;
-            this.txtRefnum.SelectionStart = 0;
-            this.txtRefnum.Size = new System.Drawing.Size(118, 23);
-            this.txtRefnum.TabIndex = 3;
-            this.txtRefnum.Texts = "";
-            // 
-            // txtArea
-            // 
-            this.txtArea.BackColor = System.Drawing.Color.White;
-            this.txtArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtArea.CharUpperCase = false;
-            this.txtArea.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtArea.Location = new System.Drawing.Point(390, 55);
-            this.txtArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtArea.MaxChar = 0;
-            this.txtArea.Name = "txtArea";
-            this.txtArea.Read_Only = true;
-            this.txtArea.SelectionLength = 0;
-            this.txtArea.SelectionStart = 0;
-            this.txtArea.Size = new System.Drawing.Size(80, 23);
-            this.txtArea.TabIndex = 2;
-            this.txtArea.Texts = "";
-            this.toolTip1.SetToolTip(this.txtArea, "<F6> = Area List");
-            // 
-            // txtVersion
-            // 
-            this.txtVersion.BackColor = System.Drawing.Color.White;
-            this.txtVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVersion.CharUpperCase = false;
-            this.txtVersion.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtVersion.Location = new System.Drawing.Point(270, 55);
-            this.txtVersion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtVersion.MaxChar = 0;
-            this.txtVersion.Name = "txtVersion";
-            this.txtVersion.Read_Only = true;
-            this.txtVersion.SelectionLength = 0;
-            this.txtVersion.SelectionStart = 0;
-            this.txtVersion.Size = new System.Drawing.Size(60, 23);
-            this.txtVersion.TabIndex = 1;
-            this.txtVersion.Texts = "";
-            // 
-            // txtPrenam
-            // 
-            this.txtPrenam.BackColor = System.Drawing.Color.White;
-            this.txtPrenam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrenam.CharUpperCase = false;
-            this.txtPrenam.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtPrenam.Location = new System.Drawing.Point(81, 83);
-            this.txtPrenam.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtPrenam.MaxChar = 0;
-            this.txtPrenam.Name = "txtPrenam";
-            this.txtPrenam.Read_Only = true;
-            this.txtPrenam.SelectionLength = 0;
-            this.txtPrenam.SelectionStart = 0;
-            this.txtPrenam.Size = new System.Drawing.Size(118, 23);
-            this.txtPrenam.TabIndex = 4;
-            this.txtPrenam.Texts = "";
-            // 
-            // cloudEmail
-            // 
-            this.cloudEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cloudEmail.BackColor = System.Drawing.Color.White;
-            this.cloudEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cloudEmail.CharUpperCase = false;
-            this.cloudEmail.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cloudEmail.Location = new System.Drawing.Point(45, 53);
-            this.cloudEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cloudEmail.MaxChar = 0;
-            this.cloudEmail.Name = "cloudEmail";
-            this.cloudEmail.Read_Only = true;
-            this.cloudEmail.SelectionLength = 0;
-            this.cloudEmail.SelectionStart = 0;
-            this.cloudEmail.Size = new System.Drawing.Size(190, 23);
-            this.cloudEmail.TabIndex = 147;
-            this.cloudEmail.Texts = "";
-            // 
-            // cloudDateTo
-            // 
-            this.cloudDateTo.BackColor = System.Drawing.Color.White;
-            this.cloudDateTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cloudDateTo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cloudDateTo.Location = new System.Drawing.Point(45, 29);
-            this.cloudDateTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cloudDateTo.Name = "cloudDateTo";
-            this.cloudDateTo.Read_Only = true;
-            this.cloudDateTo.Size = new System.Drawing.Size(96, 23);
-            this.cloudDateTo.TabIndex = 146;
-            this.cloudDateTo.Texts = "19/12/2559";
-            this.cloudDateTo.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.cloudDateTo, "<F6> = Show Calendar");
-            this.cloudDateTo.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 321);
-            // 
-            // cloudDateFrom
-            // 
-            this.cloudDateFrom.BackColor = System.Drawing.Color.White;
-            this.cloudDateFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cloudDateFrom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cloudDateFrom.Location = new System.Drawing.Point(45, 3);
-            this.cloudDateFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cloudDateFrom.Name = "cloudDateFrom";
-            this.cloudDateFrom.Read_Only = true;
-            this.cloudDateFrom.Size = new System.Drawing.Size(96, 23);
-            this.cloudDateFrom.TabIndex = 145;
-            this.cloudDateFrom.Texts = "19/12/2559";
-            this.cloudDateFrom.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.cloudDateFrom, "<F6> = Show Calendar");
-            this.cloudDateFrom.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 340);
-            // 
-            // maEmail
-            // 
-            this.maEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.maEmail.BackColor = System.Drawing.Color.White;
-            this.maEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maEmail.CharUpperCase = false;
-            this.maEmail.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.maEmail.Location = new System.Drawing.Point(45, 53);
-            this.maEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.maEmail.MaxChar = 0;
-            this.maEmail.Name = "maEmail";
-            this.maEmail.Read_Only = true;
-            this.maEmail.SelectionLength = 0;
-            this.maEmail.SelectionStart = 0;
-            this.maEmail.Size = new System.Drawing.Size(190, 23);
-            this.maEmail.TabIndex = 147;
-            this.maEmail.Texts = "";
-            // 
-            // maDateTo
-            // 
-            this.maDateTo.BackColor = System.Drawing.Color.White;
-            this.maDateTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maDateTo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.maDateTo.Location = new System.Drawing.Point(45, 29);
-            this.maDateTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.maDateTo.Name = "maDateTo";
-            this.maDateTo.Read_Only = true;
-            this.maDateTo.Size = new System.Drawing.Size(96, 23);
-            this.maDateTo.TabIndex = 146;
-            this.maDateTo.Texts = "19/12/2559";
-            this.maDateTo.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.maDateTo, "<F6> = Show Calendar");
-            this.maDateTo.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 458);
-            // 
-            // maDateFrom
-            // 
-            this.maDateFrom.BackColor = System.Drawing.Color.White;
-            this.maDateFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maDateFrom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.maDateFrom.Location = new System.Drawing.Point(45, 3);
-            this.maDateFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.maDateFrom.Name = "maDateFrom";
-            this.maDateFrom.Read_Only = true;
-            this.maDateFrom.Size = new System.Drawing.Size(96, 23);
-            this.maDateFrom.TabIndex = 145;
-            this.maDateFrom.Texts = "19/12/2559";
-            this.maDateFrom.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.maDateFrom, "<F6> = Show Calendar");
-            this.maDateFrom.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 485);
-            // 
-            // dtVerextdat
-            // 
-            this.dtVerextdat.BackColor = System.Drawing.Color.White;
-            this.dtVerextdat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtVerextdat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.dtVerextdat.Location = new System.Drawing.Point(668, 240);
-            this.dtVerextdat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtVerextdat.Name = "dtVerextdat";
-            this.dtVerextdat.Read_Only = true;
-            this.dtVerextdat.Size = new System.Drawing.Size(96, 23);
-            this.dtVerextdat.TabIndex = 25;
-            this.dtVerextdat.Texts = "19/12/2559";
-            this.dtVerextdat.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.dtVerextdat, "<F6> = Show Calendar");
-            this.dtVerextdat.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 547);
-            // 
-            // dtManual
-            // 
-            this.dtManual.BackColor = System.Drawing.Color.White;
-            this.dtManual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtManual.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.dtManual.Location = new System.Drawing.Point(668, 215);
-            this.dtManual.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtManual.Name = "dtManual";
-            this.dtManual.Read_Only = true;
-            this.dtManual.Size = new System.Drawing.Size(96, 23);
-            this.dtManual.TabIndex = 23;
-            this.dtManual.Texts = "19/12/2559";
-            this.dtManual.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.dtManual, "<F6> = Show Calendar");
-            this.dtManual.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 566);
-            // 
-            // dtExpdat
-            // 
-            this.dtExpdat.BackColor = System.Drawing.Color.White;
-            this.dtExpdat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtExpdat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.dtExpdat.Location = new System.Drawing.Point(359, 240);
-            this.dtExpdat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtExpdat.Name = "dtExpdat";
-            this.dtExpdat.Read_Only = true;
-            this.dtExpdat.Size = new System.Drawing.Size(96, 23);
-            this.dtExpdat.TabIndex = 21;
-            this.dtExpdat.Texts = "19/12/2559";
-            this.dtExpdat.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.dtExpdat, "<F6> = Show Calendar");
-            this.dtExpdat.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 586);
-            // 
-            // dtPurdat
-            // 
-            this.dtPurdat.BackColor = System.Drawing.Color.White;
-            this.dtPurdat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtPurdat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.dtPurdat.Location = new System.Drawing.Point(110, 240);
-            this.dtPurdat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtPurdat.Name = "dtPurdat";
-            this.dtPurdat.Read_Only = true;
-            this.dtPurdat.Size = new System.Drawing.Size(96, 23);
-            this.dtPurdat.TabIndex = 20;
-            this.dtPurdat.Texts = "19/12/2559";
-            this.dtPurdat.TextsMysql = "2016-12-19";
-            this.toolTip1.SetToolTip(this.dtPurdat, "<F6> = Show Calendar");
-            this.dtPurdat.ValDateTime = new System.DateTime(2016, 12, 19, 16, 14, 47, 605);
-            // 
-            // cbVerext
-            // 
-            this.cbVerext.BackColor = System.Drawing.Color.White;
-            this.cbVerext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cbVerext.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cbVerext.Location = new System.Drawing.Point(477, 240);
-            this.cbVerext.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbVerext.Name = "cbVerext";
-            this.cbVerext.Read_Only = true;
-            this.cbVerext.Size = new System.Drawing.Size(182, 24);
-            this.cbVerext.TabIndex = 24;
-            this.cbVerext.Texts = null;
-            this.toolTip1.SetToolTip(this.cbVerext, "<F6> = Show Item");
-            // 
-            // txtUpfree
-            // 
-            this.txtUpfree.BackColor = System.Drawing.Color.White;
-            this.txtUpfree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUpfree.CharUpperCase = false;
-            this.txtUpfree.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtUpfree.Location = new System.Drawing.Point(668, 190);
-            this.txtUpfree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtUpfree.MaxChar = 0;
-            this.txtUpfree.Name = "txtUpfree";
-            this.txtUpfree.Read_Only = true;
-            this.txtUpfree.SelectionLength = 0;
-            this.txtUpfree.SelectionStart = 0;
-            this.txtUpfree.Size = new System.Drawing.Size(20, 23);
-            this.txtUpfree.TabIndex = 22;
-            this.txtUpfree.Texts = "";
-            // 
-            // txtHowknown
-            // 
-            this.txtHowknown.BackColor = System.Drawing.Color.White;
-            this.txtHowknown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtHowknown.CharUpperCase = false;
-            this.txtHowknown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtHowknown.Location = new System.Drawing.Point(110, 215);
-            this.txtHowknown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtHowknown.MaxChar = 0;
-            this.txtHowknown.Name = "txtHowknown";
-            this.txtHowknown.Read_Only = true;
-            this.txtHowknown.SelectionLength = 0;
-            this.txtHowknown.SelectionStart = 0;
-            this.txtHowknown.Size = new System.Drawing.Size(70, 23);
-            this.txtHowknown.TabIndex = 19;
-            this.txtHowknown.Texts = "";
-            this.toolTip1.SetToolTip(this.txtHowknown, "<F6> = How to Know List");
-            // 
-            // txtDealer
-            // 
-            this.txtDealer.BackColor = System.Drawing.Color.White;
-            this.txtDealer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDealer.CharUpperCase = false;
-            this.txtDealer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtDealer.Location = new System.Drawing.Point(110, 95);
-            this.txtDealer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtDealer.MaxChar = 0;
-            this.txtDealer.Name = "txtDealer";
-            this.txtDealer.Read_Only = true;
-            this.txtDealer.SelectionLength = 0;
-            this.txtDealer.SelectionStart = 0;
-            this.txtDealer.Size = new System.Drawing.Size(139, 23);
-            this.txtDealer.TabIndex = 18;
-            this.txtDealer.Texts = "";
-            this.toolTip1.SetToolTip(this.txtDealer, "<F6> = Dealer List");
-            // 
-            // txtBusityp
-            // 
-            this.txtBusityp.BackColor = System.Drawing.Color.White;
-            this.txtBusityp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBusityp.CharUpperCase = false;
-            this.txtBusityp.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtBusityp.Location = new System.Drawing.Point(110, 70);
-            this.txtBusityp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtBusityp.MaxChar = 0;
-            this.txtBusityp.Name = "txtBusityp";
-            this.txtBusityp.Read_Only = true;
-            this.txtBusityp.SelectionLength = 0;
-            this.txtBusityp.SelectionStart = 0;
-            this.txtBusityp.Size = new System.Drawing.Size(70, 23);
-            this.txtBusityp.TabIndex = 17;
-            this.txtBusityp.Texts = "";
-            this.toolTip1.SetToolTip(this.txtBusityp, "<F6> = Business Type List");
-            // 
-            // txtBusides
-            // 
-            this.txtBusides.BackColor = System.Drawing.Color.White;
-            this.txtBusides.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBusides.CharUpperCase = false;
-            this.txtBusides.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtBusides.Location = new System.Drawing.Point(110, 45);
-            this.txtBusides.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtBusides.MaxChar = 0;
-            this.txtBusides.Name = "txtBusides";
-            this.txtBusides.Read_Only = true;
-            this.txtBusides.SelectionLength = 0;
-            this.txtBusides.SelectionStart = 0;
-            this.txtBusides.Size = new System.Drawing.Size(442, 23);
-            this.txtBusides.TabIndex = 16;
-            this.txtBusides.Texts = "";
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.BackColor = System.Drawing.Color.White;
-            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemark.CharUpperCase = false;
-            this.txtRemark.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtRemark.Location = new System.Drawing.Point(110, 20);
-            this.txtRemark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtRemark.MaxChar = 0;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Read_Only = true;
-            this.txtRemark.SelectionLength = 0;
-            this.txtRemark.SelectionStart = 0;
-            this.txtRemark.Size = new System.Drawing.Size(442, 23);
-            this.txtRemark.TabIndex = 15;
-            this.txtRemark.Texts = "";
-            // 
-            // txtOldnum
-            // 
-            this.txtOldnum.BackColor = System.Drawing.Color.White;
-            this.txtOldnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOldnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOldnum.Location = new System.Drawing.Point(632, 169);
-            this.txtOldnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtOldnum.MaskString = ">A-AAA-AAAAAA";
-            this.txtOldnum.Name = "txtOldnum";
-            this.txtOldnum.Read_Only = true;
-            this.txtOldnum.SelectedStringBegin = 0;
-            this.txtOldnum.SelectedStringEnd = 0;
-            this.txtOldnum.Size = new System.Drawing.Size(118, 23);
-            this.txtOldnum.TabIndex = 14;
-            this.txtOldnum.Texts = "";
-            // 
-            // txtPosition
-            // 
-            this.txtPosition.BackColor = System.Drawing.Color.White;
-            this.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPosition.CharUpperCase = false;
-            this.txtPosition.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtPosition.Location = new System.Drawing.Point(110, 169);
-            this.txtPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtPosition.MaxChar = 0;
-            this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Read_Only = true;
-            this.txtPosition.SelectionLength = 0;
-            this.txtPosition.SelectionStart = 0;
-            this.txtPosition.Size = new System.Drawing.Size(442, 23);
-            this.txtPosition.TabIndex = 13;
-            this.txtPosition.Texts = "";
-            // 
-            // txtContact
-            // 
-            this.txtContact.BackColor = System.Drawing.Color.White;
-            this.txtContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContact.CharUpperCase = false;
-            this.txtContact.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtContact.Location = new System.Drawing.Point(110, 144);
-            this.txtContact.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtContact.MaxChar = 0;
-            this.txtContact.Name = "txtContact";
-            this.txtContact.Read_Only = true;
-            this.txtContact.SelectionLength = 0;
-            this.txtContact.SelectionStart = 0;
-            this.txtContact.Size = new System.Drawing.Size(442, 23);
-            this.txtContact.TabIndex = 12;
-            this.txtContact.Texts = "";
-            // 
-            // txtFaxnum
-            // 
-            this.txtFaxnum.BackColor = System.Drawing.Color.White;
-            this.txtFaxnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFaxnum.CharUpperCase = false;
-            this.txtFaxnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtFaxnum.Location = new System.Drawing.Point(110, 119);
-            this.txtFaxnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtFaxnum.MaxChar = 0;
-            this.txtFaxnum.Name = "txtFaxnum";
-            this.txtFaxnum.Read_Only = true;
-            this.txtFaxnum.SelectionLength = 0;
-            this.txtFaxnum.SelectionStart = 0;
-            this.txtFaxnum.Size = new System.Drawing.Size(442, 23);
-            this.txtFaxnum.TabIndex = 11;
-            this.txtFaxnum.Texts = "";
-            // 
-            // txtTelnum
-            // 
-            this.txtTelnum.BackColor = System.Drawing.Color.White;
-            this.txtTelnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTelnum.CharUpperCase = false;
-            this.txtTelnum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtTelnum.Location = new System.Drawing.Point(110, 94);
-            this.txtTelnum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtTelnum.MaxChar = 0;
-            this.txtTelnum.Name = "txtTelnum";
-            this.txtTelnum.Read_Only = true;
-            this.txtTelnum.SelectionLength = 0;
-            this.txtTelnum.SelectionStart = 0;
-            this.txtTelnum.Size = new System.Drawing.Size(442, 23);
-            this.txtTelnum.TabIndex = 10;
-            this.txtTelnum.Texts = "";
-            // 
-            // txtZipcod
-            // 
-            this.txtZipcod.BackColor = System.Drawing.Color.White;
-            this.txtZipcod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtZipcod.CharUpperCase = false;
-            this.txtZipcod.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtZipcod.Location = new System.Drawing.Point(483, 69);
-            this.txtZipcod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtZipcod.MaxChar = 0;
-            this.txtZipcod.Name = "txtZipcod";
-            this.txtZipcod.Read_Only = true;
-            this.txtZipcod.SelectionLength = 0;
-            this.txtZipcod.SelectionStart = 0;
-            this.txtZipcod.Size = new System.Drawing.Size(69, 23);
-            this.txtZipcod.TabIndex = 9;
-            this.txtZipcod.Texts = "";
-            // 
-            // txtAddr03
-            // 
-            this.txtAddr03.BackColor = System.Drawing.Color.White;
-            this.txtAddr03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddr03.CharUpperCase = false;
-            this.txtAddr03.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtAddr03.Location = new System.Drawing.Point(110, 69);
-            this.txtAddr03.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAddr03.MaxChar = 0;
-            this.txtAddr03.Name = "txtAddr03";
-            this.txtAddr03.Read_Only = true;
-            this.txtAddr03.SelectionLength = 0;
-            this.txtAddr03.SelectionStart = 0;
-            this.txtAddr03.Size = new System.Drawing.Size(271, 23);
-            this.txtAddr03.TabIndex = 8;
-            this.txtAddr03.Texts = "";
-            // 
-            // txtAddr02
-            // 
-            this.txtAddr02.BackColor = System.Drawing.Color.White;
-            this.txtAddr02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddr02.CharUpperCase = false;
-            this.txtAddr02.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtAddr02.Location = new System.Drawing.Point(110, 44);
-            this.txtAddr02.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAddr02.MaxChar = 0;
-            this.txtAddr02.Name = "txtAddr02";
-            this.txtAddr02.Read_Only = true;
-            this.txtAddr02.SelectionLength = 0;
-            this.txtAddr02.SelectionStart = 0;
-            this.txtAddr02.Size = new System.Drawing.Size(442, 23);
-            this.txtAddr02.TabIndex = 7;
-            this.txtAddr02.Texts = "";
-            // 
-            // txtAddr01
-            // 
-            this.txtAddr01.BackColor = System.Drawing.Color.White;
-            this.txtAddr01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddr01.CharUpperCase = false;
-            this.txtAddr01.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtAddr01.Location = new System.Drawing.Point(110, 19);
-            this.txtAddr01.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAddr01.MaxChar = 0;
-            this.txtAddr01.Name = "txtAddr01";
-            this.txtAddr01.Read_Only = true;
-            this.txtAddr01.SelectionLength = 0;
-            this.txtAddr01.SelectionStart = 0;
-            this.txtAddr01.Size = new System.Drawing.Size(442, 23);
-            this.txtAddr01.TabIndex = 6;
-            this.txtAddr01.Texts = "";
             // 
             // SnWindow
             // 
@@ -2336,6 +2367,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_code;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_state;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_chgdat;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_problem;
     }
 }

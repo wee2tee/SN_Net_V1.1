@@ -16,6 +16,7 @@ using WebAPI.ApiResult;
 using Newtonsoft.Json;
 using SN_Net.Models;
 using CC;
+using System.IO;
 
 namespace SN_Net.Subform
 {
@@ -175,13 +176,14 @@ namespace SN_Net.Subform
                 return;
 
             this.bs_problem.ResetBindings(true);
-            //var x = this.current_serial.Problem_serial_id;
-            List<problemVM> problem = this.current_serial.Problem_serial_id.ToViewModel(this.istab_probcod);
+            
+            List<problemVM> problem = this.current_serial.Problem_serial_id.ToViewModel(this.istab_probcod).OrderBy(p => p.state).ThenBy(p => p.date).ThenBy(p => p.id).ToList();
             for (int i = 0; i < 50; i++)
             {
                 problem.Add(new problemVM());
             }
             this.bs_problem.DataSource = problem;
+            //this.dgvProblem.Rows[0].Cells["col_desc"].Selected = true;
 
             this.txtSernum.Texts = this.current_serial.sernum;
             this.txtVersion.Texts = this.current_serial.version;
@@ -385,7 +387,30 @@ namespace SN_Net.Subform
 
         private void toolStripSave_Click(object sender, EventArgs e)
         {
-            
+            problem problem_to_save = (problem)this.dgvProblem.Rows[this.current_add_edit_row.row_index].Cells["col_problem"].Value;
+
+            if(problem_to_save != null && this.SaveProblem(problem_to_save))
+            {
+                this.RemoveInlineControl();
+
+                if (this.form_mode == FORM_MODE.ADD_ITEM)
+                {
+                    /***  return to read-item mode ***/
+                    this.form_mode = FORM_MODE.READ_ITEM;
+                    this.ResetControlState();
+                    this.current_add_edit_row = null;
+                    this.AddNewInlineObject(this.dgvProblem);
+                    return;
+                }
+                if (this.form_mode == FORM_MODE.EDIT_ITEM)
+                {
+                    /***  return to read-item mode ***/
+                    this.form_mode = FORM_MODE.READ_ITEM;
+                    this.ResetControlState();
+                    this.current_add_edit_row = null;
+                    return;
+                }
+            }
         }
 
         private void toolStripFirst_Click(object sender, EventArgs e)
@@ -1568,7 +1593,6 @@ namespace SN_Net.Subform
 
         private void dgvProblem_MouseClick(object sender, MouseEventArgs e)
         {
-            //Console.WriteLine(" .. >> mouse clicked");
             DataGridView.HitTestInfo hinfo = ((XDatagrid)sender).HitTest(e.X, e.Y);
             int row_index = hinfo.RowIndex;
             int col_index = hinfo.ColumnIndex;
@@ -1589,8 +1613,7 @@ namespace SN_Net.Subform
                     this.ResetControlState();
                 }
 
-                //((XDatagrid)sender).Rows[row_index].Cells["col_date"].Selected = true;
-                ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[row_index].Cells["col_date"];
+                ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[row_index].Cells["col_desc"];
 
                 problem problem = (problem)((XDatagrid)sender).Rows[((XDatagrid)sender).CurrentCell.RowIndex].Cells["col_problem"].Value;
 
@@ -1622,17 +1645,32 @@ namespace SN_Net.Subform
                 cm.MenuItems.Add(mnu_delete);
 
                 cm.Show((XDatagrid)sender, new Point(e.X, e.Y));
+                return;
             }
+        }
+
+        private void dgvProblem_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.form_mode == FORM_MODE.ADD || this.form_mode == FORM_MODE.EDIT || this.form_mode == FORM_MODE.ADD_ITEM || this.form_mode == FORM_MODE.EDIT_ITEM)
+                return;
+
+            problem problem = (problem)((XDatagrid)sender).Rows[e.RowIndex].Cells["col_problem"].Value;
+
+            if (problem == null)
+            {
+                this.AddNewInlineObject(sender);
+            }
+            else
+            {
+                this.EditExistingInlineObject(sender);
+            }
+            return;
         }
 
         private void dgvProblem_CurrentCellChanged(object sender, EventArgs e)
         {
             if (((XDatagrid)sender).CurrentCell == null)
                 return;
-
-            Console.WriteLine(" .. >>>>>>>>> current cell changed to row : " + ((XDatagrid)sender).CurrentCell.RowIndex);
-            if (this.current_add_edit_row != null)
-                Console.WriteLine(" .. >>> current_add_edit_row : " + this.current_add_edit_row.row_index);
 
             DataGridViewCell current_cell = ((XDatagrid)sender).CurrentCell;
 
@@ -1645,13 +1683,27 @@ namespace SN_Net.Subform
             {
                 if(((XDatagrid)sender).CurrentCell.RowIndex != this.current_add_edit_row.row_index)
                 {
-                    problem prob_to_save = (problem)((XDatagrid)sender).Rows[this.current_add_edit_row.row_index].Cells["col_problem"].Value;
+                    problem problem_to_save = (problem)((XDatagrid)sender).Rows[this.current_add_edit_row.row_index].Cells["col_problem"].Value;
 
-                    if (prob_to_save != null)
+                    if (problem_to_save != null && this.SaveProblem(problem_to_save))
                     {
-                        /***  saving problem data ***/
-                        Console.WriteLine(" .. >> Perform save problem");
-                        /***  saving problem data ***/
+                        if (this.form_mode == FORM_MODE.ADD_ITEM)
+                        {
+                            /***  return to read-item mode ***/
+                            this.form_mode = FORM_MODE.READ_ITEM;
+                            this.ResetControlState();
+                            this.current_add_edit_row = null;
+                            this.AddNewInlineObject(sender);
+                            return;
+                        }
+                        if (this.form_mode == FORM_MODE.EDIT_ITEM)
+                        {
+                            /***  return to read-item mode ***/
+                            this.form_mode = FORM_MODE.READ_ITEM;
+                            this.ResetControlState();
+                            this.current_add_edit_row = null;
+                            return;
+                        }
                     }
                 }
             }
@@ -1753,7 +1805,7 @@ namespace SN_Net.Subform
                 }
             }
 
-            this.current_add_edit_row = new AddEditRowTarget() { row_index = ((XDatagrid)sender).CurrentCell.RowIndex, column_index = ((XDatagrid)sender).CurrentCell.ColumnIndex };
+            
         }
 
         private void dgvProblem_Scroll(object sender, ScrollEventArgs e)
@@ -1782,9 +1834,9 @@ namespace SN_Net.Subform
         {
             this.current_serial.Problem_serial_id.Add(new problem { id = -1, date = DateTime.Now, name = string.Empty, probcod = this.istab_probcod.Where(i => i.tabtyp == istabVM.TABTYP_PROBCOD && i.typcod == "--").First().id, probdesc = string.Empty, chgdat = DateTime.Now, serial_id = this.current_serial.id, recby = this.main_form.loged_in_user.id });
             this.FillForm();
-            //((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count - 1].Cells["col_date"].Selected = true;
             this.form_mode = FORM_MODE.ADD_ITEM;
             this.ResetControlState();
+            //((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count - 1].Cells["col_desc"];
             ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[this.current_serial.Problem_serial_id.Count - 1].Cells["col_date"];
         }
 
@@ -1792,11 +1844,15 @@ namespace SN_Net.Subform
         {
             this.form_mode = FORM_MODE.EDIT_ITEM;
             this.ResetControlState();
+            ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[((XDatagrid)sender).CurrentCell.RowIndex].Cells["col_desc"];
             ((XDatagrid)sender).CurrentCell = ((XDatagrid)sender).Rows[((XDatagrid)sender).CurrentCell.RowIndex].Cells["col_date"];
         }
 
         private void SetInlineControlPosition(DataGridView dgv, DataGridViewCell cell, Control control)
         {
+            if (control == null)
+                return;
+
             Rectangle rect = dgv.GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
             control.SetBounds(rect.X, rect.Y + 1, rect.Width - 1, rect.Height - 3);
             dgv.SendToBack();
@@ -1813,9 +1869,68 @@ namespace SN_Net.Subform
             }
         }
 
+        public bool SaveProblem(problem problem_to_save)
+        {
+            if (problem_to_save != null)
+            {
+                if (this.form_mode == FORM_MODE.ADD_ITEM)
+                {
+                    /***  save problem data ***/
+                    using (snEntities db = DBX.DataSet())
+                    {
+                        problem_to_save.recby = this.main_form.loged_in_user.id;
+                        db.problem.Add(problem_to_save);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                if (this.form_mode == FORM_MODE.EDIT_ITEM)
+                {
+                    /***  update problem data ***/
+                    using (snEntities db = DBX.DataSet())
+                    {
+                        problem problem = db.problem.Find(problem_to_save.id);
+                        if (problem == null)
+                        {
+                            MessageAlert.Show("รายการที่ต้องการแก้ไขไม่มีอยู่ในระบบ(อาจมีผู้ใช้รายอื่นลบออกไปแล้ว)", "Error", MessageAlertButtons.OK, MessageAlertIcons.ERROR);
+                            return false;
+                        }
+
+                        problem.date = problem_to_save.date;
+                        problem.name = problem_to_save.name;
+                        problem.probcod = problem_to_save.probcod;
+                        problem.probdesc = problem_to_save.probdesc;
+                        problem.recby = this.main_form.loged_in_user.id;
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+
+                if (MessageAlert.Show("เกิดข้อผิดพลาด", "Error", MessageAlertButtons.RETRY_CANCEL, MessageAlertIcons.ERROR) == DialogResult.Retry)
+                {
+                    return this.SaveProblem(problem_to_save);
+                }
+                else
+                {
+                    return false; // if not ADD_ITEM/EDIT_ITEM mode
+                }
+            }
+            else
+            {
+                if (MessageAlert.Show("เกิดข้อผิดพลาด", "Error", MessageAlertButtons.RETRY_CANCEL, MessageAlertIcons.ERROR) == DialogResult.Retry)
+                {
+                    return this.SaveProblem(problem_to_save);
+                }
+                else
+                {
+                    return false; // if problem model is null
+                }
+            }
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if(keyData == Keys.Enter && this.inline_problem_control != null)
+            if((keyData == Keys.Enter || keyData == Keys.Tab) && this.inline_problem_control != null)
             {
                 if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_date.DataPropertyName)
                 {
@@ -1831,13 +1946,85 @@ namespace SN_Net.Subform
 
                 if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_code.DataPropertyName)
                 {
-                    this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_desc"].Selected = true;
-                    return true;
+                    istab probcod = this.istab_probcod.Where(i => i.typcod == ((CustomBrowseField)this.inline_problem_control)._textBox.Text).FirstOrDefault();
+                    if (probcod == null)
+                    {
+                        SendKeys.Send("{F6}");
+                        return true;
+                    }
+                    else
+                    {
+                        ((problem)this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_problem"].Value).probcod = probcod.id;
+                        this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_code"].Value = probcod.typcod;
+                        this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_desc"].Selected = true;
+                        return true;
+                    }
                 }
 
                 if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_desc.DataPropertyName)
                 {
-                    // SAVE
+                    //problem problem_to_save = (problem)this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_problem"].Value;
+
+                    //if (problem_to_save != null && this.SaveProblem(problem_to_save)) // saving current problem
+                    //{
+                    //    this.RemoveInlineControl();
+
+                    //    if (this.form_mode == FORM_MODE.ADD_ITEM)
+                    //    {
+                    //        /***  return to read-item mode ***/
+                    //        this.form_mode = FORM_MODE.READ_ITEM;
+                    //        this.ResetControlState();
+                    //        this.current_add_edit_row = null;
+                    //        this.AddNewInlineObject(this.dgvProblem);
+                    //    }
+                    //    if (this.form_mode == FORM_MODE.EDIT_ITEM)
+                    //    {
+                    //        /***  return to read-item mode ***/
+                    //        this.form_mode = FORM_MODE.READ_ITEM;
+                    //        this.ResetControlState();
+                    //        this.current_add_edit_row = null;
+                    //    }
+                    //}
+
+                    this.toolStripSave.PerformClick();
+                    return true;
+                }
+            }
+
+            if(keyData == (Keys.Shift | Keys.Tab) && this.inline_problem_control != null)
+            {
+                if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_date.DataPropertyName)
+                {
+                    // do nothing.
+                    return true;
+                }
+
+                if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_name.DataPropertyName)
+                {
+                    this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_date"].Selected = true;
+                    return true;
+                }
+
+                if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_code.DataPropertyName)
+                {
+                    istab probcod = this.istab_probcod.Where(i => i.typcod == ((CustomBrowseField)this.inline_problem_control)._textBox.Text).FirstOrDefault();
+                    if (probcod == null)
+                    {
+                        SendKeys.Send("{F6}");
+                        return true;
+                    }
+                    else
+                    {
+                        ((problem)this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_problem"].Value).probcod = probcod.id;
+                        this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_code"].Value = probcod.typcod;
+                        this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_name"].Selected = true;
+                        return true;
+                    }
+                }
+
+                if (this.dgvProblem.CurrentCell.OwningColumn.DataPropertyName == this.col_desc.DataPropertyName)
+                {
+                    this.dgvProblem.Rows[this.dgvProblem.CurrentCell.RowIndex].Cells["col_code"].Selected = true;
                     return true;
                 }
             }
@@ -1849,6 +2036,11 @@ namespace SN_Net.Subform
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dgvProblem_Resize(object sender, EventArgs e)
+        {
+            this.SetInlineControlPosition((XDatagrid)sender, ((XDatagrid)sender).CurrentCell, this.inline_problem_control);
         }
     }
 

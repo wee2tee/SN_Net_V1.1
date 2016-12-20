@@ -43,21 +43,25 @@ namespace SN_Net.Models
             string cloud_db_uid = "root";
             string cloud_db_pwd = "12345";
 
-            string originalConnectionString = ConfigurationManager.ConnectionStrings["snEntities"].ConnectionString;
-            EntityConnectionStringBuilder ecsBuilder = new EntityConnectionStringBuilder(originalConnectionString);
-            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder(ecsBuilder.ProviderConnectionString)
-            {
-                DataSource = cloud_server,
-                UserID = cloud_db_uid,
-                Password = cloud_db_pwd,
-                InitialCatalog = cloud_db_name
-            };
+            /** Not use this because not supported for charset keyword **/
+            //string originalConnectionString = ConfigurationManager.ConnectionStrings["snEntities"].ConnectionString;
+            //EntityConnectionStringBuilder ecsBuilder = new EntityConnectionStringBuilder(originalConnectionString);
+            //SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder(ecsBuilder.ProviderConnectionString)
+            //{
+            //    DataSource = cloud_server,
+            //    UserID = cloud_db_uid,
+            //    Password = cloud_db_pwd,
+            //    InitialCatalog = cloud_db_name,
+                
+            //};
+            //string providerConnectionString = scsBuilder.ToString();
+            //ecsBuilder.ProviderConnectionString = providerConnectionString;
 
-            string providerConnectionString = scsBuilder.ToString();
-            ecsBuilder.ProviderConnectionString = providerConnectionString;
+            //string contextConnectionString = ecsBuilder.ToString();
 
-            string contextConnectionString = ecsBuilder.ToString();
-            return new snEntities(contextConnectionString);
+            //return new snEntities(contextConnectionString);
+
+            return new snEntities("metadata=res://*/Models.SnModels.csdl|res://*/Models.SnModels.ssdl|res://*/Models.SnModels.msl;provider=MySql.Data.MySqlClient;provider connection string=\"Data Source=" + cloud_server + ";Initial Catalog=" + cloud_db_name + ";Persist Security Info=True;User ID=" + cloud_db_uid + ";Password=" + cloud_db_pwd + ";charset=utf8\"");
         }
     }
 }

@@ -61,6 +61,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Enabled = false;
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.btnOK.Location = new System.Drawing.Point(3, 182);
             this.btnOK.Name = "btnOK";
